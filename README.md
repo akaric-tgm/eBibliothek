@@ -2,7 +2,7 @@
 
 Gruppe SYT <br /><br />
 
-Jahresendprojekt zur beweisung der Kompetenzen<br />
+Jahresendprojekt zur Beweisung der Kompetenzen<br />
 Anforderungen: siehe Lastenheft in /doc<br /><br />
 
 |Name|Funktion|
