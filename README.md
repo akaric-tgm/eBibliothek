@@ -5,8 +5,14 @@
 
 ## Beschreibung
 
-Jahresendprojekt zur Beweisung der Kompetenzen<br />
-Anforderungen: siehe Lastenheft in /doc<br /><br />
+Um die in den verschiedenen fachspezifischen Fächern erworbenen Kenntnisse zu
+demonstrieren und zu festigen soll ein gemeinsames Abschlussprojekt fächerübergreifend
+realisiert werden. Insbesondere soll dabei Augenmerk auf die Kompetenzen „User-Interface-
+Design“, „verteilte Systeme“, „Web Services“ sowie „Softwareentwicklung“ gelegt werden.
+Es soll ein Anwendung für eine Online-Bibliothek und Lese-Seite für quelloffene Bücher
+erstellt werden. Der Zugriff auf die Inhalte dieser Bibliothek soll sowohl von Desktop-Systemen
+(Webseite) als auch von mobilen Geräten (Webseite oder App) möglich sein.
+
 
 ## Rollenzuteilung
 
