@@ -1,7 +1,9 @@
 # Readtastic
 #### *"Scientia potentia est"*
 
-Gruppe SYT <br /><br />
+<br />
+
+## Beschreibung
 
 Jahresendprojekt zur Beweisung der Kompetenzen<br />
 Anforderungen: siehe Lastenheft in /doc<br /><br />
