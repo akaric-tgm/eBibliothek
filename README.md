@@ -1,5 +1,4 @@
-# Readtastic
-#### *"Scientia potentia est"*
+![Banner](https://raw.githubusercontent.com/akaric-tgm/eBibliothek/master/doc/banner/banner.png?token=AESnS27CF2O4WhVpoAuOlJ7WcwaLfvFSks5VOSMFwA%3D%3D)
 
 <br />
 
@@ -12,7 +11,7 @@ Design“, „verteilte Systeme“, „Web Services“ sowie „Softwareentwickl
 Es soll ein Anwendung für eine Online-Bibliothek und Lese-Seite für quelloffene Bücher
 erstellt werden. Der Zugriff auf die Inhalte dieser Bibliothek soll sowohl von Desktop-Systemen
 (Webseite) als auch von mobilen Geräten (Webseite oder App) möglich sein.<br />
-Die genauen Anforderungen finden sich im Lastenheft unter /doc/Lastenheft - eBibliothek.pdf
+Die genauen Anforderungen finden sich im Lastenheft unter /doc/lastenheft.pdf
 
 
 ## Rollenzuteilung
