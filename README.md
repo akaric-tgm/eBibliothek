@@ -17,10 +17,12 @@ Die genauen Anforderungen finden sich im Lastenheft unter /doc/Lastenheft - eBib
 
 ## Rollenzuteilung
 
-|Name|Funktion|
+|Funktion|Name|
 |---|---|
 |Product Owner|Adin Karic|
 |Technical Architect|Niklas Hohenwarter|
+Projektteam: Philipp Adler, Selina Brinnich, Erik Brändli, Andreas Ernhofer, Melanie Göbel, Jakub Kopec, 
+Tobias Perny, Manuel Reiländer, Thomas Stedronsky
 
 <br />
 
