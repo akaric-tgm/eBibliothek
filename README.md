@@ -5,8 +5,10 @@ Gruppe SYT <br /><br />
 Jahresendprojekt zur beweisung der Kompetenzen<br />
 Anforderungen: siehe Lastenheft in /doc<br /><br />
 
-Product Owner: Adin Karic<br />
-Technical Architect: Niklas Hohenwarter<br /><br />
+|Funktion|Name|
+|----|----|
+|Product Owner|Adin Karic|
+|Technical Architect|Niklas Hohenwarter|
 
 Link zur Zeitaufteilung: http://goo.gl/UbmjQS<br />
 Link zur Anforderungsaufteilung: http://goo.gl/P6RNtJ<br /><br />
