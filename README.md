@@ -1,19 +1,19 @@
 # eBibliothek
 
-Gruppe SYT 
+Gruppe SYT <br /><br />
 
-Jahresendprojekt zur beweisung der Kompetenzen
-Anforderungen: siehe Lastenheft in /doc
+Jahresendprojekt zur beweisung der Kompetenzen<br />
+Anforderungen: siehe Lastenheft in /doc<br /><br />
 
-Product Owner: Adin Karic
-Technical Architect: Niklas Hohenwarter
+Product Owner: Adin Karic<br />
+Technical Architect: Niklas Hohenwarter<br /><br />
 
-Link zur Zeitaufteilung: http://goo.gl/UbmjQS
-Link zur Anforderungsaufteilung: http://goo.gl/P6RNtJ
+Link zur Zeitaufteilung: http://goo.gl/UbmjQS<br />
+Link zur Anforderungsaufteilung: http://goo.gl/P6RNtJ<br /><br />
 
-Issue-Tracker / Bugtracker:
-Continous Integration:
-Mocking Testing:
-PM-Tools:
-Build-Tools:
-IDE: IntelliJ 14
+Issue-Tracker / Bugtracker:<br />
+Continous Integration:<br />
+Mocking Testing:<br />
+PM-Tools:<br />
+Build-Tools:<br />
+IDE: IntelliJ 14<br />
