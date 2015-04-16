@@ -33,6 +33,5 @@ Anforderungen: siehe Lastenheft in /doc<br /><br />
 |Issue-Tracker / Bugtracker||
 |Continous Integration||
 |Mocking Testing||
-|PM-Tools||
-|Build-Tools||
+|Build-Tools|make|
 |IDE|IntelliJ 14|
