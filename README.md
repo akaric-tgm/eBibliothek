@@ -5,6 +5,8 @@ Gruppe SYT <br /><br />
 Jahresendprojekt zur Beweisung der Kompetenzen<br />
 Anforderungen: siehe Lastenheft in /doc<br /><br />
 
+## Rollenzuteilung
+
 |Name|Funktion|
 |---|---|
 |Product Owner|Adin Karic|
@@ -12,13 +14,17 @@ Anforderungen: siehe Lastenheft in /doc<br /><br />
 
 <br />
 
+## Dokumentation
+
 |Beschreibung|Link|
 |---|---|
-|Link zur Zeitaufteilung|http://goo.gl/UbmjQS|
+|Link zur Zeitaufzeichnung|http://goo.gl/UbmjQS|
 |Link zur Anforderungsaufteilung|http://goo.gl/P6RNtJ|
 
 <br />
-  
+
+## Tools
+
 |Tool|Gewähltes Tool|
 |---|---|
 |Issue-Tracker / Bugtracker||
