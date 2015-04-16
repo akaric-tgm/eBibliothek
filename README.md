@@ -1,4 +1,5 @@
 # Readtastic
+#### *"Scientia potentia est"*
 
 Gruppe SYT <br /><br />
 
