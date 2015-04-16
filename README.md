@@ -30,8 +30,8 @@ Anforderungen: siehe Lastenheft in /doc<br /><br />
 
 |Tool|Gewähltes Tool|
 |---|---|
-|Issue-Tracker / Bugtracker||
-|Continous Integration||
-|Mocking Testing||
+|Issue-Tracker / Bugtracker|wird im Unterricht besprochen|
+|Continous Integration|wird im Unterricht besprochen|
+|Mocking Testing|mockito|
 |Build-Tools|make|
 |IDE|IntelliJ 14|
