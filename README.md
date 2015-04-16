@@ -11,12 +11,14 @@ Anforderungen: siehe Lastenheft in /doc<br /><br />
 |Technical Architect|Niklas Hohenwarter|
 
 <br />
+
 |Beschreibung|Link|
 |---|---|
 |Link zur Zeitaufteilung|http://goo.gl/UbmjQS|
 |Link zur Anforderungsaufteilung|http://goo.gl/P6RNtJ|
 
 <br />
+  
 |Tool|Gewähltes Tool|
 |---|---|
 |Issue-Tracker / Bugtracker||
