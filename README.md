@@ -41,7 +41,7 @@ Tobias Perny, Manuel Reiländer, Thomas Stedronsky
 |Tool|Gewähltes Tool|
 |---|---|
 |Issue-Tracker / Bugtracker|wird im Unterricht besprochen|
-|UML|http://draw.io|
+|UML|draw.io|
 |Mocking Testing|mockito|
 |Build-Tools|make|
 |IDE|IntelliJ 14|
