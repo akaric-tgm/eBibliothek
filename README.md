@@ -32,6 +32,7 @@ Tobias Perny, Manuel Reiländer, Thomas Stedronsky
 |Link zur Zeitaufzeichnung|http://goo.gl/UbmjQS|
 |Link zur Anforderungsaufteilung|http://goo.gl/P6RNtJ|
 |Link zu größerem Datenspeicher<br />(Login:master_adin@hotmail.com PW:vanabua)|https://mega.co.nz/|
+|Link zum UML|http://goo.gl/3krgrl|
 
 <br />
 
@@ -40,7 +41,7 @@ Tobias Perny, Manuel Reiländer, Thomas Stedronsky
 |Tool|Gewähltes Tool|
 |---|---|
 |Issue-Tracker / Bugtracker|wird im Unterricht besprochen|
-|Continous Integration|wird im Unterricht besprochen|
+|UML|http://draw.io|
 |Mocking Testing|mockito|
 |Build-Tools|make|
 |IDE|IntelliJ 14|
