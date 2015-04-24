@@ -1,0 +1,34 @@
+                                                   TODO
+===============================================================================================================
+eBibliothek Views:
+
+  Frontend:
+    Login:
+    Benutzer Login
+    Benutzer mit Sozialen Netzwerken anmelden
+
+    Hochladen:
+    Formular: Buch hochladen
+
+    Anzeige für alle Bücher:
+    Seite mit Suchleiste
+
+    Anzeige für jedes einzelne Buch:
+    Alle Metadaten eines Buches
+    Bewertungen
+    Kommentare schreiben / löschen
+    Herunterladen
+    Button (lesen)
+    je nach Authentifizierungsstufe ein button „Buch bearbeiten“ (bearbeitung der Metadaten)
+    je nach Authentifizierungsstufe ein button Löschen
+    Melden
+    je nach authentifizierungsstufe ein status des Buches (gemeldet, bearbeitet,…) + button für die Bestätigung
+
+    Leseanzeige:
+    Anzeige für das Blättern der Seiten
+    je nach Authentifizierungsstufe ein button „Bearbeiten“ (im Text Bearbeiten)
+
+  Backend:
+    Benutzer löschen oder Rollen vergeben
+    Backup erstellen
+    Neuen Server hinzufügen
