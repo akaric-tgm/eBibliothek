@@ -1,4 +1,4 @@
-![Banner](https://raw.githubusercontent.com/akaric-tgm/eBibliothek/master/doc/banner/banner.png?token=AESnS27CF2O4WhVpoAuOlJ7WcwaLfvFSks5VOSMFwA%3D%3D)
+![Banner](https://raw.githubusercontent.com/akaric-tgm/eBibliothek/master/doc/banner/banner.png?token=AESnS2hPBcwWDg_8to3BSsAifpNSS2D3ks5VRxfEwA%3D%3D)
 
 <br />
 
