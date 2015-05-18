@@ -45,8 +45,8 @@ public class Person {
     public BasicDBObject toDBObject() {
         BasicDBObject doc = new BasicDBObject();
 
-        doc.put("name", name);
-        doc.put("age", age);
+        doc.put("name", getName());
+        doc.put("age", getAge());
 
         return doc;
     }
@@ -54,14 +54,14 @@ public class Person {
     public static Person fromDBObject(DBObject doc) {
         Person p = new Person();
 
-        p.name = (String) doc.get("name");
-        p.age = (int) doc.get("age");
+        p.setName((String) doc.get("name"));
+        p.setAge((int) doc.get("age"));
 
         return p;
     }
 
     @Override
     public String toString() {
-        return name + ", " + age;
+        return getName() + ", " + getAge();
     }
 }
