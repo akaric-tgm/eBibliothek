@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+        <p:dataTable var="car" value="#{dtPaginatorView.cars}" rows="10" editable="true"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+
+            <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs" />
+            <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs" />
+
+            <p:column headerText="gid" sortBy="#{car.model}" filterBy="#{car.model}">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{car.model}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{car.model}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Role" sortBy="#{car.year}" filterBy="#{car.color}">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{car.color}" /></f:facet>
+                    <f:facet name="input">
+                        <h:selectOneMenu value="#{car.color}" style="width:100%">
+                            <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
+                        </h:selectOneMenu>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Username" sortBy="#{car.model}" filterBy="#{car.model}">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{car.model}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{car.model}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Passwort" sortBy="#{car.model}" filterBy="#{car.model}">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{car.model}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{car.model}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Firstname" sortBy="#{car.model}" filterBy="#{car.model}">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{car.model}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{car.model}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Nachname" sortBy="#{car.model}" filterBy="#{car.model}">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{car.model}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{car.model}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Color" sortBy="#{car.color}" filterBy="#{car.color}">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{car.color}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{car.color}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column style="width:32px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
