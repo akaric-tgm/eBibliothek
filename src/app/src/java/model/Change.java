@@ -1,5 +1,7 @@
 package model;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import java.util.Date;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
@@ -59,6 +61,26 @@ public class Change {
      */
     public void setPage(int page) {
         this.page = page;
+    }
+    
+    public BasicDBObject toDBObject() {
+        BasicDBObject doc = new BasicDBObject();
+
+        doc.put("changedate", getChangedate());
+        doc.put("page", getPage());
+
+        return doc;
+    }
+
+    public static Change fromDBObject(DBObject doc) {
+        Change c = new Change();
+
+        c.setMongoid((String) doc.get("_id"));
+        c.setChangedate((Date) doc.get("changedate"));
+        c.setPage((int) doc.get("page"));
+;
+
+        return c;
     }
 
 }

@@ -1,5 +1,7 @@
 package model;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
@@ -34,8 +36,8 @@ public class Book {
     public String getMongoid() {
         return mongoid;
     }
-
-    /**
+    
+     /**
      * @param mongoid the mongoid to set
      */
     public void setMongoid(String mongoid) {
@@ -138,6 +140,35 @@ public class Book {
      */
     public void setViews(int views) {
         this.views = views;
+    }
+    
+    public BasicDBObject toDBObject() {
+        BasicDBObject doc = new BasicDBObject();
+
+        doc.put("author", getAuthor());
+        doc.put("downloads", getDownloads());
+        doc.put("filepath", getFilepath());
+        doc.put("language", getLanguage());
+        doc.put("summary", getSummary());
+        doc.put("title", getTitle());
+        doc.put("views", getViews());
+
+        return doc;
+    }
+
+    public static Book fromDBObject(DBObject doc) {
+        Book b = new Book();
+
+        b.setMongoid((String) doc.get("_id"));
+        b.setAuthor((String) doc.get("author"));
+        b.setDownloads((int) doc.get("downloads"));
+        b.setFilepath((String) doc.get("filepath"));
+        b.setLanguage((String) doc.get("language"));
+        b.setSummary((String) doc.get("summary"));
+        b.setTitle((String) doc.get("title"));
+        b.setViews((int) doc.get("views"));
+
+        return b;
     }
 
 }
