@@ -11,37 +11,34 @@
     <ui:composition template="basic_design.xhtml">
         <ui:define name="content">
             <h:form>
-                <fieldset>
-                    <legend>Benutzer Registrieren</legend>
-                    <div class="col-md-4">
-                        <div class="row">
-                            <label class="form-label">Vorname</label>
-                            <input type="text" class="form-control" />
-                            <label class="form-label">Nachname</label>
-                            <input type="text" class="form-control" />
-                            <label class="form-label">Email</label>
-                            <input type="text" class="form-control" />
-                            <label class="form-label">Username</label>
-                            <input type="text" class="form-control" />
-                            <label class="form-label">Passwort</label>
-                            <input type="password" class="form-control" />
-                            <br />
-                            <input type="submit" class="btn pull-right btn-success" value="Registrieren" />
-                            <input type="reset" class="btn pull-left btn-default" value="Felder L&ouml;schen" />
-                        </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"></div>
+                    <div class="ui-grid-col-4">
+                        <h2>Registrieren</h2>
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        <p:inputText id="username" required="true" requiredMessage="Bitte wähle einen Usernamen!"
+                                     placeholder="Username" style="margin-top: 3px;"/>
+                        <br />
+                        <p:inputText id="firstname" required="true" requiredMessage="Bitte gib deinen Vornamen an!"
+                                     placeholder="Vorname" style="margin-top: 3px;"/>
+                        <br />
+                        <p:inputText id="lastname" required="true" requiredMessage="Bitte gib deinen Nachnamen an!"
+                                     placeholder="Nachname" style="margin-top: 3px;"/>
+                        <br />
+                        <p:inputText id="email" required="true" requiredMessage="Bitte gib deine E-Mail Adresse an!"
+                                     placeholder="E-Mail Adresse" style="margin-top: 3px;"/>
+                        <p:inputText id="emailConfirm" required="true" requiredMessage="Bitte wiederhole deine E-Mail Adresse!"
+                                     placeholder="E-Mail Wiederholung" match="email" style="margin-top: 3px; margin-left: 10px;"/>
+                        <br />
+                        <p:password id="password" required="true" requiredMessage="Bitte wähle ein Passwort!"
+                                    placeholder="Passwort" style="margin-top: 3px;"/>
+                        <p:password id="passwordConfirm" required="true" requiredMessage="Bitte wiederhole dein Passwort!"
+                                    match="password" placeholder="Passwort Wiederholung" style="margin-top: 3px; margin-left: 10px;"/>
+                        <br />
+                        <p:commandButton value="Registrieren" icon="ui-icon-check" style="margin-top: 10px;"/>
                     </div>
-                    <div class="col-md-4">
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-11">
-                                <div class="alert alert-warning alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <b>Warnung!</b> Bitte alle Felder ausf&uuml;llen.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
+                    <div class="ui-grid-col-4"></div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -39,41 +39,50 @@
     </style>
 </h:head>
 <h:body>
-    <!-- MENUBAR -->
-    <div>
-        <h:form>
-            <p:menubar>
-                <!-- Add Menu-Items here -->
-                <p:menuitem value="Home" url="#"/>
-                <p:menuitem value="Testy" url="#" />
-                <p:menuitem value="Impressum" url="#" />
-                <f:facet name="options">
-                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
-                </f:facet>
-            </p:menubar>
-        </h:form>
-    </div>
+    <div class="ui-grid ui-grid-responsive">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-1"></div>
+            <div class="ui-grid-col-10">
+                <!-- MENUBAR -->
+                <div>
+                    <h:form>
+                        <p:menubar>
+                            <!-- Add Menu-Items here -->
+                            <p:menuitem value="Home" outcome="index"/>
+                            <p:submenu label="Testy">
+                                <p:menuitem value="Logout" outcome="benutzer_ausloggen" />
+                                <p:menuitem value="Buch melden" outcome="buch_melden" />
+                                <p:menuitem value="Buch downloaden" outcome="download_book" />
+                                <p:menuitem value="Buch bewerten" outcome="rate_book" />
+                                <p:menuitem value="Buch anzeigen" outcome="book_details" />
+                            </p:submenu>
+                            <p:menuitem value="Impressum" outcome="impressum" />
+                            <f:facet name="options">
+                                <p:button value="Login" outcome="benutzer_einloggen" icon="ui-icon-extlink" />
+                                <p:button outcome="benutzer_registrieren" value="Registrieren" icon="ui-icon-extlink" />
+                            </f:facet>
+                        </p:menubar>
+                    </h:form>
+                </div>
 
-    <!-- CONTENT -->
-    <div class="container" style="padding-top: 30px; padding-bottom: 30px; padding-left: 1em; padding-right: 1em;">
-        <div class="ui-grid ui-grid-responsive">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-2"></div>
-                <div class="ui-grid-col-8">
+                <!-- CONTENT -->
+                 <div class="container" style="padding-top: 30px; padding-bottom: 30px; padding-left: 1em; padding-right: 1em;">
                     <ui:insert name="content">
                         <!-- CONTENT GOES HERE -->
                     </ui:insert>
                 </div>
-                <div class="ui-grid-col-2"></div>
+
+                <!-- FOOTER -->
+                <footer class="footer">
+                    <div class="container">
+                        <p class="footer-text">&copy; 2015 Readtastic <a href="https://github.com/akaric-tgm/eBibliothek">Github</a></p>
+                    </div>
+                </footer>
+
+
             </div>
+            <div class="ui-grid-col-1"></div>
         </div>
     </div>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">&copy; 2015 Readtastic <a href="">Github</a></p>
-        </div>
-    </footer>
 </h:body>
 </html>
