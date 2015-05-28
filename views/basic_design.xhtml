@@ -56,7 +56,17 @@
 
     <!-- CONTENT -->
     <div class="container" style="padding-top: 30px; padding-bottom: 30px; padding-left: 1em; padding-right: 1em;">
-        <!-- FILL IN CONTENT HERE-->
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-8">
+                    <ui:insert name="content">
+                        <!-- CONTENT GOES HERE -->
+                    </ui:insert>
+                </div>
+                <div class="ui-grid-col-2"></div>
+            </div>
+        </div>
     </div>
 
     <!-- FOOTER -->

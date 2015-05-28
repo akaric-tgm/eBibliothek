@@ -8,14 +8,16 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
 <h:body>
-   <f:view>
-       <h:form>
-       <h:outputLabel value="Bewerte"/>
-       <p:rating value="#{helloBean.bewertung}" />
-       <p:commandButton value="Ok" ajax="false" action="rate_secondpage.xhtml?faces-redirect=True" />
-       <br />
-       <h:commandButton action="signinpage.xhtml?faces-redirect=True" image="facebook.png"/>
-       </h:form>
-   </f:view>
+    <ui:composition template="basic_design.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <h:outputLabel value="Bewerte"/>
+                <p:rating value="#{helloBean.bewertung}" />
+                <p:commandButton value="Ok" ajax="false" action="rate_secondpage.xhtml?faces-redirect=True" />
+                <br />
+                <h:commandButton action="signinpage.xhtml?faces-redirect=True" image="facebook.png"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>
