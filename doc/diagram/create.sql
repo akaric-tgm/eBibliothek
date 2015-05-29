@@ -1,5 +1,5 @@
 CREATE TABLE User (
- username VARCHAR(20) NOT NULL,
+ username VARCHAR(20) NOT NULL PRIMARY KEY,
  password VARCHAR(30),
  firstName VARCHAR(20),
  lastName VARCHAR(30),
@@ -11,42 +11,52 @@ CREATE TABLE User (
  emailtoken VARCHAR(30)
 );
 
-ALTER TABLE User ADD CONSTRAINT PK_User PRIMARY KEY (username);
-
-
 CREATE TABLE Book (
- filepath VARCHAR(50) NOT NULL,
+ bookid INT NOT NULL PRIMARY KEY,
  title VARCHAR(50),
  author VARCHAR(80),
  summary VARCHAR(1000),
  language VARCHAR(15),
+ filepath VARCHAR(50) NOT NULL,
  downloads INT,
  views INT,
- username VARCHAR(20)
+ username VARCHAR(20),
+
+ FOREIGN KEY (username) REFERENCES User (username)
 );
 
-ALTER TABLE Book ADD CONSTRAINT PK_Book PRIMARY KEY (filepath);
-
-
-CREATE TABLE Change (
+CREATE TABLE ChangeRequest (
+ username VARCHAR(20) NOT NULL,
+ bookid INT NOT NULL,
  changedate DATE,
- page INT
-);
+ page INT,
 
+ PRIMARY KEY (username,bookid),
+ FOREIGN KEY (username) REFERENCES User (username),
+ FOREIGN KEY (bookid) REFERENCES Book(bookid)
+);
 
 CREATE TABLE Contribution (
+ username VARCHAR(20) NOT NULL,
+ bookid INT NOT NULL,
  comment VARCHAR(1000),
- rating SMALLINT
-);
+ rating SMALLINT,
 
+ PRIMARY KEY (username,bookid),
+ FOREIGN KEY (username) REFERENCES User (username),
+ FOREIGN KEY (bookid) REFERENCES Book(bookid)
+);
 
 CREATE TABLE Report (
+ username VARCHAR(20) NOT NULL,
+ bookid INT NOT NULL,
  comment VARCHAR(1000),
  reportdate DATE,
- status SMALLINT
+ status SMALLINT,
+ 
+ PRIMARY KEY (username,bookid),
+ FOREIGN KEY (username) REFERENCES User (username),
+ FOREIGN KEY (bookid) REFERENCES Book(bookid)
 );
-
-
-ALTER TABLE Book ADD CONSTRAINT FK_Book_0 FOREIGN KEY (username) REFERENCES User (username);
 
 
