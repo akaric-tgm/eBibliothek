@@ -15,8 +15,27 @@
                 <div class="ui-grid-col-4">
                     <h:form>
                         <h2>Buch XXX bewerten</h2>
-                        <p:rating value="" /><br />
-                        <p:commandButton value="Bewerten" style="margin-top: 10px;"/>
+                        <p:inputTextarea rows="5" cols="50" counter="display" maxlength="350"
+                                         counterTemplate="Noch {0} Zeichen übrig." autoResize="true"
+                                placeholder="Kommentar..."/>
+                        <br />
+                        <div style="text-align: right;">
+                            <h:outputText id="display" />
+                        </div>
+                        <br />
+                        <div style="padding-top: 10px;"></div>
+
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-8">
+                                <div style="padding-top: 15px; padding-left: 10px;">
+                                    <p:rating value="5" /><br />
+                                </div>
+                            </div>
+
+                            <div class="ui-grid-col-4">
+                                <p:commandButton value="Bewerten" style="margin-top: 10px;" icon="ui-icon-star"/>
+                            </div>
+                        </div>
                     </h:form>
                 </div>
                 <div class="ui-grid-col-4"></div>
