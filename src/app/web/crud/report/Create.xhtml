@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReportCreateDlg" widgetVar="ReportCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateReportTitle}">
+            <h:form id="ReportCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reportController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateReportLabel_comment}" for="comment" />
+                        <p:inputText id="comment" value="#{reportController.selected.comment}" title="#{bundle.CreateReportTitle_comment}" />
+                        <p:outputLabel value="#{bundle.CreateReportLabel_reportdate}" for="reportdate" />
+                        <p:calendar id="reportdate" pattern="MM/dd/yyyy" value="#{reportController.selected.reportdate}" title="#{bundle.EditReportTitle_reportdate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateReportLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{reportController.selected.status}" title="#{bundle.CreateReportTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateReportLabel_book}" for="book" />
+                        <p:selectOneMenu id="book" value="#{reportController.selected.book}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_book}">
+                            <f:selectItems value="#{bookController.itemsAvailableSelectOne}"
+                                           var="bookItem"
+                                           itemValue="#{bookItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateReportLabel_user}" for="user" />
+                        <p:selectOneMenu id="user" value="#{reportController.selected.user}" required="true" requiredMessage="#{bundle.EditReportRequiredMessage_user}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="userItem"
+                                           itemValue="#{userItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reportController.create}" value="#{bundle.Save}" update="display,:ReportListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReportCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReportCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

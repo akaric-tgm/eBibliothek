@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContributionCreateDlg" widgetVar="ContributionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateContributionTitle}">
+            <h:form id="ContributionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contributionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateContributionLabel_comment}" for="comment" />
+                        <p:inputText id="comment" value="#{contributionController.selected.comment}" title="#{bundle.CreateContributionTitle_comment}" />
+                        <p:outputLabel value="#{bundle.CreateContributionLabel_rating}" for="rating" />
+                        <p:inputText id="rating" value="#{contributionController.selected.rating}" title="#{bundle.CreateContributionTitle_rating}" />
+                        <p:outputLabel value="#{bundle.CreateContributionLabel_book}" for="book" />
+                        <p:selectOneMenu id="book" value="#{contributionController.selected.book}" required="true" requiredMessage="#{bundle.EditContributionRequiredMessage_book}">
+                            <f:selectItems value="#{bookController.itemsAvailableSelectOne}"
+                                           var="bookItem"
+                                           itemValue="#{bookItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateContributionLabel_user}" for="user" />
+                        <p:selectOneMenu id="user" value="#{contributionController.selected.user}" required="true" requiredMessage="#{bundle.EditContributionRequiredMessage_user}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="userItem"
+                                           itemValue="#{userItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contributionController.create}" value="#{bundle.Save}" update="display,:ContributionListForm:datalist,:growl" oncomplete="handleSubmit(args,'ContributionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ContributionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
