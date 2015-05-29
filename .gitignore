@@ -12,3 +12,5 @@
 hs_err_pid*
 
 .vagrant/
+/src/app/build/
+/src/app/dist/
