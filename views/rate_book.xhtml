@@ -10,14 +10,17 @@
 <h:body>
     <ui:composition template="basic_design.xhtml">
         <ui:define name="content">
-            <h1>
-                Du hast mit
-                <h:outputLabel id="output2" value="${helloBean.bewertung}"/>
-                Sternen bewertet.
-            </h1>
-            <h:form>
-                <p:rating value="#{helloBean.bewertung}" readonly="true" />
-            </h:form>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4"></div>
+                <div class="ui-grid-col-4">
+                    <h:form>
+                        <h2>Buch XXX bewerten</h2>
+                        <p:rating value="" /><br />
+                        <p:commandButton value="Bewerten" style="margin-top: 10px;"/>
+                    </h:form>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
         </ui:define>
     </ui:composition>
 </h:body>

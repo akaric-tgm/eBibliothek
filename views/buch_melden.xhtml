@@ -10,19 +10,41 @@
 <h:body>
     <ui:composition template="basic_design.xhtml">
         <ui:define name="content">
-            <p:inputTextarea rows="15" cols="100" counter="display" maxlength="350" counterTemplate="{0} characters remaining." autoResize="true" />
-            <h:outputText id="display" />
-            Hallo, das ist ein Test!
-            <br />
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4"></div>
+                <div class="ui-grid-col-4">
+                    <h:form>
+                        <h2>Buch XXX melden</h2>
+                        <p:inputTextarea rows="5" cols="50" counter="display" maxlength="350" counterTemplate="Noch {0} Zeichen übrig." autoResize="true" />
+                        <br />
+                        <div style="text-align: right;">
+                            <h:outputText id="display" />
+                        </div>
+                        <br />
+                        <div style="padding-top: 10px;"></div>
 
-            <h:form>
-                <p:growl id="messages" />
+                        <p:growl id="messages" />
+                        <br />
 
-                <p:splitButton value="Buch melden" actionListener="#{helloBean.save}" update="messages">
-                    <p:menuitem value="anstößige Sprache" actionListener="#{helloBean.update}" update="messages" />
-                    <p:menuitem value="anderes" actionListener="#{helloBean.delete}" ajax="false" />
-                </p:splitButton>
-            </h:form>
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-8">
+                                <div style="padding-top: 4px; padding-left: 10px;">
+                                    <p:selectOneMenu id="reason" value="#{meldenBean.reason}">
+                                        <f:selectItem itemLabel="Anstößige Sprache" itemValue="badLanguage" />
+                                        <f:selectItem itemLabel="Anderer Grund" itemValue="else" />
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+
+                            <div class="ui-grid-col-4">
+                                <p:commandButton value="Submit" icon="ui-icon-check" />
+                            </div>
+                        </div>
+
+                    </h:form>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
         </ui:define>
     </ui:composition>
 </h:body>
