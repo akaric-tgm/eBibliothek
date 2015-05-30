@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+
+<h:head>
+    <title>Readtastic</title>
+    <meta name="viewport" content="width=device-width" />
+    <!--change icon path if file moved!-->
+    <style type="text/css">
+        .footer
+        {
+            position: fixed;
+            height: 50px;
+            bottom: 0;
+            width: 100%;
+            background-color: #f5f5f5;
+        }
+        .footer-text
+        {
+            color:#777;
+            display: block;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+        .ui-menuitem-link.ui-state-hover
+        {
+            background-image: none !important;
+            background-color: transparent !important;
+            color: #8b98ff !important;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="ui-grid ui-grid-responsive">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-1"></div>
+            <div class="ui-grid-col-10">
+                <!-- MENUBAR -->
+                <div>
+                    <h:form>
+                        <p:menubar>
+                            <!-- Add Menu-Items here -->
+                            <p:menuitem value="Home" outcome="index"/>
+                            <p:submenu label="Testy">
+                                <p:menuitem value="Logout" outcome="benutzer_ausloggen" />
+                            </p:submenu>
+                            <p:menuitem value="Impressum" outcome="impressum" />
+                            <f:facet name="options">
+                                <p:button value="Login" outcome="benutzer_einloggen" icon="ui-icon-extlink" />
+                                <p:button outcome="benutzer_registrieren" value="Registrieren" icon="ui-icon-extlink" />
+                            </f:facet>
+                        </p:menubar>
+                    </h:form>
+                </div>
+
+                <!-- CONTENT -->
+                 <div class="container" style="padding-top: 30px; padding-bottom: 30px; padding-left: 1em; padding-right: 1em;">
+                    <ui:insert name="content">
+                        <!-- CONTENT GOES HERE -->
+                    </ui:insert>
+                </div>
+
+                <!-- FOOTER -->
+                <footer class="footer">
+                    <div class="container">
+                        <p class="footer-text">&copy; 2015 Readtastic <a href="https://github.com/akaric-tgm/eBibliothek">Github</a></p>
+                    </div>
+                </footer>
+
+
+            </div>
+            <div class="ui-grid-col-1"></div>
+        </div>
+    </div>
+</h:body>
+</html>
