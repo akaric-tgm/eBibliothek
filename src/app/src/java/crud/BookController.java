@@ -18,9 +18,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "bookController")
+@ManagedBean(name="bookController")
 @SessionScoped
-public class BookController implements Serializable {
+public class BookController implements Serializable{
 
     @EJB
     private crud.BookFacade ejbFacade;
@@ -114,6 +114,10 @@ public class BookController implements Serializable {
 
     public List<Book> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+    
+    public Book getBookByBookId(int bookId){
+        return getFacade().find(bookId);
     }
 
     @FacesConverter(forClass = Book.class)
