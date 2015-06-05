@@ -117,7 +117,9 @@ public class BookController implements Serializable{
     }
     
     public Book getBookByBookId(int bookId){
-        return getFacade().find(bookId);
+        Book book=getFacade().find(bookId);
+        System.out.print("Hallo");
+        return book;
     }
 
     @FacesConverter(forClass = Book.class)
@@ -158,6 +160,8 @@ public class BookController implements Serializable{
                 return null;
             }
         }
+        
+
 
     }
 
