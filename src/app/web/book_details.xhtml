@@ -15,22 +15,23 @@
                     <img class="img-responsive" src="http://www.logos.com/media/pbb/SampleCover.jpg"
                                                 alt="cover-image" style="width: 200px; height: 300px;"/>
                 </div>
+                <!--<f:param name="id" value= /> -->
                 <div class="ui-grid-col-9">
                     <div class="ui-grid-row">
                         <div class="ui-grid-col-12">
-                            <b style="font-size: 32px;">Sample Book</b>
-                            <span style="font-size: 22px;">von John Doe</span>
-                            <br />
+                          <p:outputLabel value=" #{bookController.getBookByBookId(1).title}" style="font-family: 'Times New Roman'; font-size: 40px;"/>
+                          <p:outputLabel value="von #{bookController.getBookByBookId(1).author}" style="font-family: 'Times New Roman'; font-size: 32px;"/>
+                          <br />
                         </div>
                     </div>
                     <div class="ui-grid-row" style="padding-top: 10px;">
                         <div class="ui-grid-col-8">
                             <div style="font-size: 18px;">
-                                <p:rating value="3" readonly="true" />
+                                <p:rating value="" readonly="true" />
                             </div><br />
-                            <div style="font-size: 18px; padding-top: 10px;">Hochgeladen von User123</div>
-                            <div style="font-size: 18px; padding-top: 5px;">220 Seiten auf Deutsch</div>
-                            <div style="font-size: 18px; padding-top: 5px;">37 Mal heruntergeladen</div>
+                            <p:outputLabel value="#{bookController.getBookByBookId(1).views} mal gelesen" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
+                            <p:outputLabel value="hochgeladen von #{bookController.getBookByBookId(1).username}" style="font-family: 'Times New Roman'; font-size: 32px;"/><br />
+                            <p:outputLabel value="#{bookController.getBookByBookId(1).downloads} mal gedownloadet" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
                         </div>
                         <div class="ui-grid-4">
                             <p:button value="Buch lesen"/><br />
@@ -50,18 +51,10 @@
                     </div>
                 </div>
             </div>
+            
             <div class="ui-grid-row" style="padding-top: 30px;">
                 <div class="ui-grid-col-8">
-                    <div style="font-size: 18px;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer massa
-                    justo, volutpat a sagittis non, mattis sed sem. Nam et rhoncus lorem. Quisque pellentesque gravida
-                    felis et rutrum. Aenean ut porta risus, ac porta nisi. Donec odio ante, sagittis ac leo quis,
-                    tincidunt consectetur enim. Nunc venenatis lectus a varius hendrerit. Nullam vulputate vestibulum
-                    lorem ac tempor. Praesent rhoncus lacus sit amet ligula congue, ut condimentum quam hendrerit.
-                    Integer mi enim, rhoncus at pretium sed, suscipit ut justo. Maecenas urna arcu, sodales lacinia
-                    ultricies eu, semper in eros. Suspendisse ut rutrum purus. Aenean nec eleifend massa. Pellentesque
-                    sit amet aliquet.
-                    </div>
+                     <p:outputLabel value="von #{bookController.getBookByBookId(1).summary}" style="font-family: 'Times New Roman'; font-size: 20px;"/>
                 </div>
             </div>
             <div class="ui-grid-row" style="padding-top: 30px;">
