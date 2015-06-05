@@ -62,7 +62,7 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
     @Column(name = "role")
-    private Short role;
+    private String role;
     @Column(name = "fid")
     private Integer fid;
     @Column(name = "gid")
@@ -129,11 +129,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Short getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Short role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

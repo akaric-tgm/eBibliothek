@@ -10,6 +10,7 @@
 
 <h:head>
     <title>Readtastic</title>
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/images/favicon.ico"/>
     <meta name="viewport" content="width=device-width" />
     <!--change icon path if file moved!-->
     <style type="text/css">
@@ -51,6 +52,7 @@
                             <p:menuitem value="Home" outcome="index"/>
                             <p:submenu label="Testy">
                                 <p:menuitem value="Logout" outcome="benutzer_ausloggen" />
+                                <p:menuitem value="Passwort zurücksetzen" outcome="reset_password" />
                             </p:submenu>
                             <p:menuitem value="Impressum" outcome="impressum" />
                             <f:facet name="options">
