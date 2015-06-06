@@ -26,6 +26,7 @@ public class UserController implements Serializable {
     private crud.UserFacade ejbFacade;
     private List<User> items = null;
     private User selected;
+    private boolean logged_in;
 
     public UserController() {
     }
@@ -114,6 +115,14 @@ public class UserController implements Serializable {
 
     public List<User> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+    
+    public void setLoginState(boolean state){
+        logged_in = state;
+    }
+    
+    public boolean getLoginState(){
+        return logged_in;
     }
 
     @FacesConverter(forClass = User.class)
