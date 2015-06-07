@@ -5,6 +5,7 @@ import crud.util.JsfUtil;
 import crud.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,6 +28,14 @@ public class UserController implements Serializable {
     private List<User> items = null;
     private User selected;
     private boolean logged_in;
+    private final static String[] roles;
+    
+    static {
+        roles = new String[3];
+        roles[0] = "User";
+        roles[1] = "Moderator";
+        roles[2] = "Admin";
+    }
 
     public UserController() {
     }
@@ -79,6 +88,10 @@ public class UserController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    
+    public List<String> getRoles() {
+        return Arrays.asList(roles);
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
