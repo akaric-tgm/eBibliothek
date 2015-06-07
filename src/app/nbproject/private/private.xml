@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/java/logic/EmailSender.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>87</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/web/WEB-INF/web.xml</file>
             <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/web/index.xhtml</file>
             <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/src/java/entity/Book.java</file>
             <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/src/java/entity/User.java</file>
             <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/web/book_details.xhtml</file>
             <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/src/java/crud/BookController.java</file>
+=======
+            <file>file:/Users/jakubkopec/NetBeansProjects/eBibliothek/src/app/web/benutzer_einloggen.xhtml</file>
+            <file>file:/Users/jakubkopec/NetBeansProjects/eBibliothek/src/app/web/index.xhtml</file>
+            <file>file:/Users/jakubkopec/NetBeansProjects/eBibliothek/src/app/src/java/crud/UserController.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
