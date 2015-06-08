@@ -127,10 +127,7 @@ public class BookController implements Serializable{
          * @return
          */
         public String getContextParameter() {
-        return FacesContext
-                .getCurrentInstance()
-                .getExternalContext()
-                .getInitParameter("book");
+            return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("book");
         } 
         
     @FacesConverter(forClass = Book.class)
