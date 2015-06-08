@@ -32,7 +32,7 @@ public class RateBook implements Serializable{
     public int getRating(){
         return rating;
     }
-    public String getMessage(String message){
+    public String getMessage(){
         return message;
     }
 }
