@@ -3,18 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/web/WEB-INF/web.xml</file>
-            <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/web/index.xhtml</file>
-            <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/src/java/entity/Book.java</file>
-            <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/src/java/entity/User.java</file>
-            <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/web/book_details.xhtml</file>
-            <file>file:/E:/TGM/4Klasse/eBibliothek/src/app/src/java/crud/BookController.java</file>
-=======
-            <file>file:/Users/jakubkopec/NetBeansProjects/eBibliothek/src/app/web/benutzer_einloggen.xhtml</file>
-            <file>file:/Users/jakubkopec/NetBeansProjects/eBibliothek/src/app/web/index.xhtml</file>
-            <file>file:/Users/jakubkopec/NetBeansProjects/eBibliothek/src/app/src/java/crud/UserController.java</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/Adin%20Karic/Desktop/eBibliothek/src/app/src/java/logic/BuchLoeschenBean.java</file>
+            <file>file:/C:/Users/Adin%20Karic/Desktop/eBibliothek/src/app/web/buch_loeschen.xhtml</file>
+            <file>file:/C:/Users/Adin%20Karic/Desktop/eBibliothek/src/app/web/book_details.xhtml</file>
+            <file>file:/C:/Users/Adin%20Karic/Desktop/eBibliothek/src/app/web/buch_melden.xhtml</file>
         </group>
     </open-files>
 </project-private>

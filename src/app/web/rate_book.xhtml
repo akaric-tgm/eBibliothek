@@ -16,7 +16,7 @@
                     <h:form>
                         <h2>Buch "#{bookController.getBookByBookId(1).title}" bewerten</h2>
                         <p:inputTextarea rows="5" cols="50" counter="display" maxlength="1000"
-                                         counterTemplate="Noch {0} Zeichen übrig." autoResize="true"
+                                         counterTemplate="Noch {0} Zeichen übrig." value="#{rateBook.message}" autoResize="true"
                                 placeholder="Kommentar..."/>
                         <br />
                         <div style="text-align: right;">
