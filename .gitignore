@@ -19,3 +19,4 @@ hs_err_pid*
 #Netbeans Shit
 private.properties
 project.properties
+private.xml
