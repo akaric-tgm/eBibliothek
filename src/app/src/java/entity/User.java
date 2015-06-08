@@ -35,12 +35,16 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName"),
     @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName"),
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
-    @NamedQuery(name = "User.findByRole", query = "SELECT u FROM User u WHERE u.role = :role"),
     @NamedQuery(name = "User.findByFid", query = "SELECT u FROM User u WHERE u.fid = :fid"),
     @NamedQuery(name = "User.findByGid", query = "SELECT u FROM User u WHERE u.gid = :gid"),
     @NamedQuery(name = "User.findByPwtoken", query = "SELECT u FROM User u WHERE u.pwtoken = :pwtoken"),
-    @NamedQuery(name = "User.findByEmailtoken", query = "SELECT u FROM User u WHERE u.emailtoken = :emailtoken")})
+    @NamedQuery(name = "User.findByEmailtoken", query = "SELECT u FROM User u WHERE u.emailtoken = :emailtoken"),
+    @NamedQuery(name = "user.findByBlocked", query = "SELECT u FROM User u WHERE u.blocked = :blocked")})
 public class User implements Serializable {
+    @Column(name = "blocked")
+    private Boolean blocked;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<UserGroups> userGroupsCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -61,8 +65,6 @@ public class User implements Serializable {
     @Size(max = 120)
     @Column(name = "email")
     private String email;
-    @Column(name = "role")
-    private String role;
     @Column(name = "fid")
     private Integer fid;
     @Column(name = "gid")
@@ -129,14 +131,6 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public Integer getFid() {
         return fid;
     }
@@ -167,6 +161,11 @@ public class User implements Serializable {
 
     public void setEmailtoken(String emailtoken) {
         this.emailtoken = emailtoken;
+    }
+    
+
+    public void setRole(boolean blocked) {
+        this.blocked = blocked;
     }
 
     @XmlTransient
@@ -228,6 +227,23 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "entity.User[ username=" + username + " ]";
+    }
+
+    public Boolean getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(Boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    @XmlTransient
+    public Collection<UserGroups> getUserGroupsCollection() {
+        return userGroupsCollection;
+    }
+
+    public void setUserGroupsCollection(Collection<UserGroups> userGroupsCollection) {
+        this.userGroupsCollection = userGroupsCollection;
     }
     
 }
