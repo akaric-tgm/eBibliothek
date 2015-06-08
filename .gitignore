@@ -17,7 +17,7 @@ hs_err_pid*
 
 
 #Netbeans Shit
-nbproject/private/
+/src/app/nbproject/private/
 build/
 nbbuild/
 dist/
