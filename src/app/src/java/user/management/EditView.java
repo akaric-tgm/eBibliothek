@@ -14,19 +14,19 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
-import entity.User;
-import crud.UserController;
+import entity.UserGroups;
+import crud.UserGroupsController;
 import org.primefaces.event.CellEditEvent;
 
 @ManagedBean(name = "dtEditView")
 @ViewScoped
 public class EditView implements Serializable {
 
-    private List<User> users1;
-    private List<User> users2;
+    private List<UserGroups> users1;
+    private List<UserGroups> users2;
 
-    @ManagedProperty("#{userController}")
-    private UserController service;
+    @ManagedProperty("#{userGroupsController}")
+    private UserGroupsController service;
 
     @PostConstruct
     public void init() {
@@ -34,31 +34,33 @@ public class EditView implements Serializable {
         users2 = service.getItems();
     }
 
-    public List<User> getUsers1() {
+    public List<UserGroups> getUsers1() {
         return users1;
     }
 
-    public List<User> getUsers2() {
+    public List<UserGroups> getUsers2() {
         return users2;
     }
-
+    
     public List<String> getRoles() {
-        for(String r : service.getRoles()){
-        }
         return service.getRoles();
     }
     
-    public void setService(UserController service) {
+    public List<String> getBlocked() {
+        return service.getBlocked();
+    }
+    
+    public void setService(UserGroupsController service) {
         this.service = service;
     }
 
     public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Userdaten geändert", ((User) event.getObject()).getUsername());
+        FacesMessage msg = new FacesMessage("Userdaten geändert", ((UserGroups) event.getObject()).getUser().getUsername());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Bearbeitung abgebrochen", ((User) event.getObject()).getUsername());
+        FacesMessage msg = new FacesMessage("Bearbeitung abgebrochen", ((UserGroups) event.getObject()).getUser().getUsername());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 

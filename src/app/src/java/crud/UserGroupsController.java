@@ -1,6 +1,6 @@
 package crud;
 
-import entity.User;
+import entity.UserGroups;
 import crud.util.JsfUtil;
 import crud.util.JsfUtil.PersistAction;
 
@@ -12,92 +12,98 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Named;
 
-@Named("userController")
+@Named("userGroupsController")
 @SessionScoped
-public class UserController implements Serializable {
+public class UserGroupsController implements Serializable {
 
     @EJB
-    private crud.UserFacade ejbFacade;
-    private List<User> items = null;
-    private User selected;
-    private boolean logged_in;
-
-    public UserController() {
+    private crud.UserGroupsFacade ejbFacade;
+    private List<UserGroups> items = null;
+    private UserGroups selected;
+    private final static String[] roles;
+    private final static String[] blocked;
+    
+    static {
+        roles = new String[3];
+        roles[0] = "User";
+        roles[1] = "Moderator";
+        roles[2] = "Admin";
     }
     
-    public boolean isValidCredentials(String username, String password){
-        List<User> user= getFacade().findByUsername(username);
-        if(user.size() <= 0){
-            return false;
-        }else{
-            return user.get(0).getPassword().equals(password);
-        }
-    }
-    
-    public boolean isValidUsernameAndEmail(String username, String email){
-        List<User> user= getFacade().findByUsername(username);
-        if(user.size() <= 0){
-            return false;
-        }else{
-            return user.get(0).getEmail().equals(email);
-        }
+    static {
+        blocked = new String[2];
+        blocked[0] = "true";
+        blocked[1] = "false";
     }
 
-    public User getSelected() {
+    public UserGroupsController() {
+    }
+
+    public UserGroups getSelected() {
         return selected;
     }
 
-    public void setSelected(User selected) {
+    public void setSelected(UserGroups selected) {
         this.selected = selected;
     }
 
     protected void setEmbeddableKeys() {
+        selected.getUserGroupsPK().setUsername(selected.getUser().getUsername());
     }
 
     protected void initializeEmbeddableKey() {
+        selected.setUserGroupsPK(new entity.UserGroupsPK());
     }
 
-    private UserFacade getFacade() {
+    private UserGroupsFacade getFacade() {
         return ejbFacade;
     }
 
-    public User prepareCreate() {
-        selected = new User();
+    public UserGroups prepareCreate() {
+        selected = new UserGroups();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UserGroupsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UserGroupsUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UserDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UserGroupsDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<User> getItems() {
+    public List<UserGroups> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
+    }
+    
+    public List<String> getRoles() {
+        return Arrays.asList(roles);
+    }
+    
+    public List<String> getBlocked() {
+        return Arrays.asList(blocked);
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -128,44 +134,48 @@ public class UserController implements Serializable {
         }
     }
 
-    public List<User> getItemsAvailableSelectMany() {
+    public UserGroups getUserGroups(entity.UserGroupsPK id) {
+        return getFacade().find(id);
+    }
+
+    public List<UserGroups> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<User> getItemsAvailableSelectOne() {
+    public List<UserGroups> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-    
-    public void setLoginState(boolean state){
-        logged_in = state;
-    }
-    
-    public boolean getLoginState(){
-        return logged_in;
-    }
 
-    @FacesConverter(forClass = User.class)
-    public static class UserControllerConverter implements Converter {
+    @FacesConverter(forClass = UserGroups.class)
+    public static class UserGroupsControllerConverter implements Converter {
+
+        private static final String SEPARATOR = "#";
+        private static final String SEPARATOR_ESCAPED = "\\#";
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            UserController controller = (UserController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "userController");
-            return controller.getFacade().find(getKey(value));
+            UserGroupsController controller = (UserGroupsController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "userGroupsController");
+            return controller.getUserGroups(getKey(value));
         }
 
-        java.lang.String getKey(String value) {
-            java.lang.String key;
-            key = value;
+        entity.UserGroupsPK getKey(String value) {
+            entity.UserGroupsPK key;
+            String values[] = value.split(SEPARATOR_ESCAPED);
+            key = new entity.UserGroupsPK();
+            key.setGroupname(values[0]);
+            key.setUsername(values[1]);
             return key;
         }
 
-        String getStringKey(java.lang.String value) {
+        String getStringKey(entity.UserGroupsPK value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value);
+            sb.append(value.getGroupname());
+            sb.append(SEPARATOR);
+            sb.append(value.getUsername());
             return sb.toString();
         }
 
@@ -174,11 +184,11 @@ public class UserController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof User) {
-                User o = (User) object;
-                return getStringKey(o.getUsername());
+            if (object instanceof UserGroups) {
+                UserGroups o = (UserGroups) object;
+                return getStringKey(o.getUserGroupsPK());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), User.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), UserGroups.class.getName()});
                 return null;
             }
         }
