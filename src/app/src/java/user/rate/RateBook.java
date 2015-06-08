@@ -5,13 +5,34 @@
  */
 package user.rate;
 
-import javax.annotation.ManagedBean;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+
+
 
 /**
  *
- * @author Bleedinghina
+ * @author Melanie Goebel
  */
-@ManagedBean
-public class RateBook {
+
+@Named("rateBook")
+@SessionScoped
+public class RateBook implements Serializable{
     
+    private int rating;
+    private String message;
+    
+    public void setRating(int rating){
+        this.rating = rating;
+    }
+    public void setMessage(String message){
+        this.message = message;
+    }
+    public int getRating(){
+        return rating;
+    }
+    public String getMessage(String message){
+        return message;
+    }
 }
