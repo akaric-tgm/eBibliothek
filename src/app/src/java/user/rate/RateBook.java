@@ -8,6 +8,8 @@ package user.rate;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 
 
@@ -19,7 +21,8 @@ import javax.inject.Named;
 @Named("rateBook")
 @SessionScoped
 public class RateBook implements Serializable{
-    
+    @Min(1) 
+    @Max(5)
     private int rating;
     private String message;
     

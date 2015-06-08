@@ -28,12 +28,13 @@
                         <div class="ui-grid-row">
                             <div class="ui-grid-col-8">
                                 <div style="padding-top: 15px; padding-left: 10px;">
-                                    <p:rating value="#{rateBook.rating}"/><br />
+                                    <p:rating id="rating" value="#{rateBook.rating}"/><br />
+                                    <p:message for="rating" />
                                 </div>
                             </div>
 
                             <div class="ui-grid-col-4">
-                                <p:commandButton ajax="false" value="Bewerten" style="margin-top: 10px;" icon="ui-icon-star" action="book_detail?faces-redirect=True"/>
+                                <p:commandButton validateClient="true" ajax="false" value="Bewerten" style="margin-top: 10px;" icon="ui-icon-star" action="book_detail?faces-redirect=True"/>
                             </div>
                         </div>
                     </h:form>
