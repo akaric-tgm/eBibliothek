@@ -4,11 +4,11 @@ CREATE TABLE User (
  firstName VARCHAR(20),
  lastName VARCHAR(30),
  email VARCHAR(120),
- role VARCHAR(20),
  fid INT,
  gid INT,
  pwtoken VARCHAR(64),
- emailtoken VARCHAR(64)
+ emailtoken VARCHAR(64),
+ blocked BOOLEAN
 );
 
 CREATE TABLE User_Groups (
@@ -68,14 +68,17 @@ CREATE TABLE Report (
 );
 
 
-INSERT INTO User VALUES('akaric','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Adin','Karic','akaric@student.tgm.ac.at','User',12345678,12345678,null,null);
-INSERT INTO User VALUES('nhohenwarter','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Niklas','Hohenwarter','nhohenwarter@student.tgm.ac.at','Admin',12345671,12345671,null,null);
-INSERT INTO User VALUES('sbrinnich','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Selina','Brinnich','sbrinnich@student.tgm.ac.at','Admin',12345672,12345672,null,null);
-INSERT INTO User VALUES('tperny','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Tobias','Perny','tperny@student.tgm.ac.at','User',12345673,12345678,null,null);
-INSERT INTO User VALUES('mgoebel','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Melanie','Göbel','mgoebel@student.tgm.ac.at','User',12345674,12345678,null,null);
+INSERT INTO User VALUES('akaric','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Adin','Karic','akaric@student.tgm.ac.at',12345678,12345678,null,null,false);
+INSERT INTO User VALUES('nhohenwarter','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Niklas','Hohenwarter','nhohenwarter@student.tgm.ac.at',12345671,12345671,null,null,false);
+INSERT INTO User VALUES('sbrinnich','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Selina','Brinnich','sbrinnich@student.tgm.ac.at',12345672,12345672,null,null,false);
+INSERT INTO User VALUES('tperny','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Tobias','Perny','tperny@student.tgm.ac.at',12345673,12345678,null,null,false);
+INSERT INTO User VALUES('mgoebel','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Melanie','Göbel','mgoebel@student.tgm.ac.at',12345674,12345678,null,null,false);
 
 INSERT INTO User_Groups VALUES('User','akaric');
 INSERT INTO User_Groups VALUES('Admin','sbrinnich');
+INSERT INTO User_Groups VALUES('User','tperny');
+INSERT INTO User_Groups VALUES('User','mgoebel');
+INSERT INTO User_Groups VALUES('Admin','nhohenwarter');
 
 INSERT INTO Book VALUES(1,'Harry Potter 1','Joanne K. Rowling','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Deutsch','harry1.epub',12334,12354,'akaric');
 INSERT INTO Book VALUES(2,'Harry Potter 2','Joanne K. Rowling','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Deutsch','harry2.epub',12324,12334,'sbrinnich');
