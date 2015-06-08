@@ -5,21 +5,26 @@
  */
 package logic;
 
+import crud.UserController;
 import javax.inject.Named;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 /**
  *
  * @author Selina Brinnich
  */
 @Named("resetPasswordBean")
-@SessionScoped
+@RequestScoped
 public class ResetPasswordBean implements Serializable {
     
     @EJB
     EmailSender emailSender;
+    @Inject
+    UserController userController;
     
     private String email = "";
     private String username = "";
@@ -64,6 +69,15 @@ public class ResetPasswordBean implements Serializable {
      * Creates a new instance of ResetPasswordBean
      */
     public ResetPasswordBean() {
+    }
+    
+    public String checkCredentials(){
+        if(userController.isValidUsernameAndEmail(username, email)){
+            sendEmailResetPassword();
+            return "index?faces-redirect=true";
+        }else{
+            return "index?faces-redirect=true";
+        }
     }
     
     public void sendEmailResetPassword(){

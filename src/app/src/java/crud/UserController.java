@@ -39,6 +39,24 @@ public class UserController implements Serializable {
 
     public UserController() {
     }
+    
+    public boolean isValidCredentials(String username, String password){
+        List<User> user= getFacade().findByUsername(username);
+        if(user.size() <= 0){
+            return false;
+        }else{
+            return user.get(0).getPassword().equals(password);
+        }
+    }
+    
+    public boolean isValidUsernameAndEmail(String username, String email){
+        List<User> user= getFacade().findByUsername(username);
+        if(user.size() <= 0){
+            return false;
+        }else{
+            return user.get(0).getEmail().equals(email);
+        }
+    }
 
     public User getSelected() {
         return selected;
