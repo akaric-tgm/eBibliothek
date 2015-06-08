@@ -31,12 +31,12 @@ import javax.mail.internet.MimeMultipart;
 @Named("emailSender")
 public class EmailSender {
 
-    private int port = 587;
-    private String host = "smtp.gmail.com";
-    private String from = "readtastic.application@gmail.com";
+    private int port = 465;
+    private String host = "mxf92d.netcup.net";
+    private String from = "readtastic@nerox.net";
     private boolean auth = true;
-    private String username = "readtastic.application@gmail.com";
-    private String password = "Sytisgeil!";
+    private String username = "readtastic@nerox.net";
+    private String password = "sytisgeil!";
     private MailProtocol protocol = MailProtocol.TLS;
     private boolean debug = true;
     

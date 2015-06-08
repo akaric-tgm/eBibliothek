@@ -6,6 +6,7 @@
 package crud;
 
 import entity.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,10 @@ public class UserFacade extends AbstractFacade<User> {
 
     public UserFacade() {
         super(User.class);
+    }
+    
+    public List<User> findByUsername(String username){
+        return em.createNamedQuery("User.findByUsername").setParameter("username", username).getResultList();
     }
     
 }
