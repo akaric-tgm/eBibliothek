@@ -121,7 +121,18 @@ public class BookController implements Serializable{
         System.out.print("Hallo");
         return book;
     }
-
+    
+        /**
+         * This method returns the book parameter value.
+         * @return
+         */
+        public String getContextParameter() {
+        return FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getInitParameter("book");
+        } 
+        
     @FacesConverter(forClass = Book.class)
     public static class BookControllerConverter implements Converter {
 
@@ -162,7 +173,5 @@ public class BookController implements Serializable{
         }
         
 
-
     }
-
 }
