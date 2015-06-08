@@ -16,8 +16,8 @@ hs_err_pid*
 /src/app/dist/
 
 
-#Netbeans Shit
-/src/app/nbproject/private/
+#Netbeans Stuff
+nbproject/private/
 build/
 nbbuild/
 dist/
@@ -25,3 +25,4 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
+/src/app/nbproject/private/
