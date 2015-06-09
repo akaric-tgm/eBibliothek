@@ -17,6 +17,7 @@ import org.primefaces.event.RowEditEvent;
 import entity.UserGroups;
 import crud.UserGroupsController;
 import entity.User;
+import entity.UserGroupsPK;
 import javax.inject.Inject;
 
 @ManagedBean(name = "dtEditView")
@@ -66,6 +67,14 @@ public class EditView implements Serializable {
         System.out.print(user.getFirstName());
         usercontroller.setSelected(user);
         usercontroller.update();
+        
+        UserGroups groups = service.findByUsername(((UserGroups) event.getObject()).getUser().getUsername());
+        UserGroupsPK pk = service.findByUsernamePK(((UserGroups) event.getObject()).getUser().getUsername());
+        pk.setGroupname(((UserGroups) event.getObject()).getUserGroupsPK().getGroupname());
+        pk.setUsername(((UserGroups) event.getObject()).getUserGroupsPK().getUsername());
+        groups.setUserGroupsPK(pk);
+        service.setSelected(groups);
+        //service.update();
     }
 
     public void onRowCancel(RowEditEvent event) {

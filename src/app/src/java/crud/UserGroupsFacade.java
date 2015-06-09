@@ -6,6 +6,8 @@
 package crud;
 
 import entity.UserGroups;
+import entity.UserGroupsPK;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,4 +30,7 @@ public class UserGroupsFacade extends AbstractFacade<UserGroups> {
         super(UserGroups.class);
     }
     
+    public List<UserGroups> findByUsername(String username){
+        return em.createNamedQuery("UserGroups.findByUsername").setParameter("username", username).getResultList();
+    }
 }

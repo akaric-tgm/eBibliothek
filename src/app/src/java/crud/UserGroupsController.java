@@ -3,6 +3,7 @@ package crud;
 import entity.UserGroups;
 import crud.util.JsfUtil;
 import crud.util.JsfUtil.PersistAction;
+import entity.UserGroupsPK;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -44,6 +45,24 @@ public class UserGroupsController implements Serializable {
     }
 
     public UserGroupsController() {
+    }
+    
+    public UserGroups findByUsername(String username){
+        List<UserGroups> user = getFacade().findByUsername(username);
+        if(user.size() <= 0){
+            return null;
+        }else{
+            return user.get(0);
+        }
+    }
+    
+    public UserGroupsPK findByUsernamePK(String username){
+        List<UserGroups> user = getFacade().findByUsername(username);
+        if(user.size() <= 0){
+            return null;
+        }else{
+            return user.get(0).getUserGroupsPK();
+        }
     }
 
     public UserGroups getSelected() {
