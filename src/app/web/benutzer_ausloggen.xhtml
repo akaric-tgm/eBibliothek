@@ -14,7 +14,7 @@
                    <p:growl id="messages" />
                    <p:commandButton value="User ausloggen" onclick="confirmation.show()" type="button"/>
                    <p:confirmDialog message="Bist du sicher?" showEffect="bounce" hideEffect="explode" header="Confirm" severity="alert" widgetVar="confirmation">
-                       <p:commandButton value="Ja" update="messages" ajax="false" action="#{redirectBean.directToYaay(username)}" oncomplete="confirmation.hide()" />
+                       <p:commandButton value="Ja" update="messages" ajax="false" action="#{userController.setToLoggedOut()}" oncomplete="confirmation.hide()" />
                        <p:commandButton value="Nein" onclick="confirmation.hide()" type="button" />
                    </p:confirmDialog>
                </h:form>

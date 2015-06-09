@@ -140,6 +140,11 @@ public class UserController implements Serializable {
         logged_in = state;
     }
     
+    public String setToLoggedOut(){
+        setLoginState(false);
+        return "index.xhmtl?faces-redirect=true";
+    }
+    
     public boolean getLoginState(){
         return logged_in;
     }
