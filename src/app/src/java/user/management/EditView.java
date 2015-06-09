@@ -5,18 +5,19 @@
  */
 package user.management;
 
+import crud.UserController;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 import entity.UserGroups;
 import crud.UserGroupsController;
-import org.primefaces.event.CellEditEvent;
+import entity.User;
+import javax.inject.Inject;
 
 @ManagedBean(name = "dtEditView")
 @ViewScoped
@@ -25,8 +26,10 @@ public class EditView implements Serializable {
     private List<UserGroups> users1;
     private List<UserGroups> users2;
 
-    @ManagedProperty("#{userGroupsController}")
+    @Inject
     private UserGroupsController service;
+    @Inject
+    private UserController usercontroller;
 
     @PostConstruct
     public void init() {
@@ -57,20 +60,16 @@ public class EditView implements Serializable {
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Userdaten geändert", ((UserGroups) event.getObject()).getUser().getUsername());
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+        User user = usercontroller.findByUsername(((UserGroups) event.getObject()).getUser().getUsername());
+        user.setUser(((UserGroups) event.getObject()).getUser());
+        System.out.print(user.getFirstName());
+        usercontroller.setSelected(user);
+        usercontroller.update();
     }
 
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Bearbeitung abgebrochen", ((UserGroups) event.getObject()).getUser().getUsername());
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-    public void onCellEdit(CellEditEvent event) {
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-
-        if (newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
     }
 } 
