@@ -246,4 +246,13 @@ public class User implements Serializable {
         this.userGroupsCollection = userGroupsCollection;
     }
     
+    public void setUser(User user){
+        this.setUsername(user.getUsername());
+        this.setFirstName(user.getFirstName());
+        this.setLastName(user.getLastName());
+        this.setEmail(user.getEmail());
+        /* Group */
+        this.setBlocked(user.getBlocked());
+    }
+    
 }

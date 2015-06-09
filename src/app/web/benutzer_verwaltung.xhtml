@@ -24,7 +24,7 @@
                         <p:column headerText="#{bundle.ListUserTitle_username}" sortBy="#{user.user.username}" filterBy="#{user.user.username}">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{user.user.username}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{user.user.username}" style="width:100%"/></f:facet>
+                                <f:facet name="input"><p:inputText value="#{user.user.username}" readonly="true" style="width:100%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
                         
@@ -73,6 +73,10 @@
                                              
                         <p:column style="width:35px">
                             <p:rowEditor />
+                        </p:column>
+                        <p:column style="width:35px">
+                             <p:growl id="growl" life="2000" />
+                              <p:commandButton actionListener="#{benutzerLoeschenBean.erfolgreich}" id="loeschen" update="growl" icon="ui-icon-close" title="Löschen" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

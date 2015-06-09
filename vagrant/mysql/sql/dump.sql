@@ -70,7 +70,7 @@ CREATE TABLE Report (
 
 INSERT INTO User VALUES('akaric','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Adin','Karic','akaric@student.tgm.ac.at',12345678,12345678,null,null,false);
 INSERT INTO User VALUES('nhohenwarter','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Niklas','Hohenwarter','nhohenwarter@student.tgm.ac.at',12345671,12345671,null,null,false);
-INSERT INTO User VALUES('sbrinnich','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Selina','Brinnich','sbrinnich@student.tgm.ac.at',12345672,12345672,null,null,false);
+INSERT INTO User VALUES('sbrinnich','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Selina','Brinnich','sbrinnich@student.tgm.ac.at',12345672,12345672,'testy','testy',false);
 INSERT INTO User VALUES('tperny','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Tobias','Perny','tperny@student.tgm.ac.at',12345673,12345678,null,null,false);
 INSERT INTO User VALUES('mgoebel','a44ee4c7b9d08be3d632c255f2c4029bc5aed773d11908af0f07754906eab455','Melanie','Göbel','mgoebel@student.tgm.ac.at',12345674,12345678,null,null,false);
 
