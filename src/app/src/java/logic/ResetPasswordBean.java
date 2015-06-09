@@ -6,10 +6,13 @@
 package logic;
 
 import crud.UserController;
+import entity.User;
 import javax.inject.Named;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -28,6 +31,10 @@ public class ResetPasswordBean implements Serializable {
     
     private String email = "";
     private String username = "";
+    private String newPassword = "";
+    private String newPasswordConfirm = "";
+    
+    private String errorMessage = "";
 
     /**
      * Get the value of username
@@ -65,19 +72,70 @@ public class ResetPasswordBean implements Serializable {
         this.email = email;
     }
 
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getNewPasswordConfirm() {
+        return newPasswordConfirm;
+    }
+
+    public void setNewPasswordConfirm(String newPasswordConfirm) {
+        this.newPasswordConfirm = newPasswordConfirm;
+    }
+
+    public String getErrorMessage() {
+        System.out.println("get");
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
     /**
      * Creates a new instance of ResetPasswordBean
      */
     public ResetPasswordBean() {
     }
     
-    public String checkCredentials(){
+    public String checkCredentialsSendMail(){
         if(userController.isValidUsernameAndEmail(username, email)){
             sendEmailResetPassword();
             return "index?faces-redirect=true";
         }else{
             return "index?faces-redirect=true";
         }
+    }
+    
+    public void checkCredentialsResetPassword(){
+        if(userController.isValidUsernameAndEmail(username, email)){
+            if(!newPassword.equals(newPasswordConfirm)){
+                errorMessage += "Passwörter stimmen nicht überein!";
+                //return "password_reset_set";
+            }else{
+                String token = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("token");
+                User user = userController.findByUsername(username);
+                if(user.getPwtoken().equals(token)){
+                    user.setPassword(newPassword);
+                    userController.setSelected(user);
+                    userController.update();
+                    //return "password_reset_success?faces-redirect=true";
+                }else{
+                    errorMessage += "Fehler! E-Mail Adresse oder Username falsch!";
+                    //return "password_reset_set";
+                }
+            }
+        }else{
+            errorMessage += "Fehler! E-Mail Adresse oder Username falsch!";
+            //return "password_reset_set";
+        }
+        System.out.println(errorMessage);
+        //return null;
     }
     
     public void sendEmailResetPassword(){

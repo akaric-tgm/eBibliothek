@@ -73,7 +73,6 @@ public class EmailSender {
             message.setRecipients(Message.RecipientType.TO, address);
             message.setSubject(subject);
             message.setSentDate(new Date());
-            //message.setText(body);
             Multipart multipart = new MimeMultipart("alternative");
             MimeBodyPart htmlPart = new MimeBodyPart();
             htmlPart.setContent(body, "text/html");
