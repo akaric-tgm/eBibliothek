@@ -52,7 +52,8 @@
                              <p:growl id="message" showDetail="true" />
  
                             <p:commandButton value="Buch löschen" actionListener="#{buchLoeschenBean.erfolgreich}" update="message">
-                            <p:confirm header="Buch löschen" message="Sind Sie sicher?" icon="ui-icon-alert" />
+                                <f:param id="bookid" name="bookid" value="#{bookController.getContextParameter()}" />
+                                <p:confirm header="Buch löschen" message="Sind Sie sicher?" icon="ui-icon-alert" />
                             </p:commandButton>
  
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">

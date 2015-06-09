@@ -67,6 +67,7 @@ public class BookController implements Serializable{
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("BookDeleted"));
+        System.out.print(("hehe"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
