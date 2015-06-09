@@ -74,6 +74,10 @@
                         <p:column style="width:35px">
                             <p:rowEditor />
                         </p:column>
+                        <p:column style="width:35px">
+                             <p:growl id="growl" life="2000" />
+                              <p:commandButton actionListener="#{buttonView.buttonAction}" id="loeschen" update="growl" icon="ui-icon-close" title="Löschen" />
+                        </p:column>
                     </p:dataTable>
                 </h:form>
                 <div class="ui-grid-row" style="padding-top: 5%;"></div>
