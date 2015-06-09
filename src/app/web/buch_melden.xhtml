@@ -14,8 +14,9 @@
                 <div class="ui-grid-col-4"></div>
                 <div class="ui-grid-col-4">
                     <h:form>
-                        <h2>Buch XXX melden</h2>
-                        <p:inputTextarea rows="5" cols="50" counter="display" maxlength="350" counterTemplate="Noch {0} Zeichen übrig." autoResize="true" />
+                        <h2>Buch "#{bookController.getBookByBookId(1).title}" melden</h2>
+                        <p:inputTextarea rows="5" cols="50" counter="display" maxlength="350"
+                                         counterTemplate="Noch {0} Zeichen übrig." value="#{reportBook.message}" autoResize="true" />
                         <br />
                         <div style="text-align: right;">
                             <h:outputText id="display" />
@@ -29,7 +30,7 @@
                         <div class="ui-grid-row">
                             <div class="ui-grid-col-8">
                                 <div style="padding-top: 4px; padding-left: 10px;">
-                                    <p:selectOneMenu id="reason" value="#{meldenBean.reason}">
+                                    <p:selectOneMenu id="reason" value="#{reportBook.reason}">
                                         <f:selectItem itemLabel="Anstößige Sprache" itemValue="badLanguage" />
                                         <f:selectItem itemLabel="Anderer Grund" itemValue="else" />
                                     </p:selectOneMenu>
@@ -37,7 +38,7 @@
                             </div>
 
                             <div class="ui-grid-col-4">
-                                <p:commandButton value="Submit" icon="ui-icon-check" />
+                                <p:commandButton value="Submit" icon="ui-icon-check" action="#{reportBook.incrementReportcounter(bookController.getBookByBookId(1))}" ajax="false" />
                             </div>
                         </div>
 
