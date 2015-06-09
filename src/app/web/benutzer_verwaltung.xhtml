@@ -21,50 +21,62 @@
                         <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs" />
                         <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs" />
 
-                        <p:column headerText="#{bundle.ListUserTitle_username}" sortBy="#{user.username}" filterBy="#{user.username}">
+                        <p:column headerText="#{bundle.ListUserTitle_username}" sortBy="#{user.user.username}" filterBy="#{user.user.username}">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{user.username}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{user.username}" style="width:100%"/></f:facet>
+                                <f:facet name="output"><h:outputText value="#{user.user.username}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{user.user.username}" style="width:100%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        
+                        <p:column headerText="#{bundle.ListUserTitle_firstName}" sortBy="#{user.user.firstName}" filterBy="#{user.user.firstName}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{user.user.firstName}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{user.user.firstName}" style="width:100%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="#{bundle.ListUserTitle_firstName}" sortBy="#{user.firstName}" filterBy="#{user.firstName}">
+                        <p:column headerText="#{bundle.ListUserTitle_lastName}" sortBy="#{user.user.lastName}" filterBy="#{user.user.lastName}">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{user.firstName}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{user.firstName}" style="width:100%"/></f:facet>
+                                <f:facet name="output"><h:outputText value="#{user.user.lastName}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{user.user.lastName}" style="width:100%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="#{bundle.ListUserTitle_lastName}" sortBy="#{user.lastName}" filterBy="#{user.lastName}">
+                        <p:column headerText="#{bundle.ListUserTitle_email}" sortBy="#{user.user.email}" filterBy="#{user.user.email}">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{user.lastName}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{user.lastName}" style="width:100%"/></f:facet>
+                                <f:facet name="output"><h:outputText value="#{user.user.email}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{user.user.email}" style="width:100%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-
-                        <p:column headerText="#{bundle.ListUserTitle_email}" sortBy="#{user.email}" filterBy="#{user.email}">
+                        
+                        <p:column headerText="#{bundle.ListUserTitle_role}" sortBy="#{user.userGroupsPK.groupname}" filterBy="#{user.userGroupsPK.groupname}">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{user.email}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{user.email}" style="width:100%"/></f:facet>
-                            </p:cellEditor>
-                        </p:column>
-
-                        <p:column headerText="#{bundle.ListUserTitle_role}" sortBy="#{user.role}" filterBy="#{user.role}">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{user.role}" /></f:facet>
+                                <f:facet name="output"><h:outputText value="#{user.userGroupsPK.groupname}" /></f:facet>
                                 <f:facet name="input">
-                                    <h:selectOneMenu value="#{user.role}" style="width:100%">
+                                    <h:selectOneMenu value="#{user.userGroupsPK.groupname}" style="width:100%">
                                         <f:selectItems value="#{dtEditView.roles}" var="role" itemLabel="#{role}" itemValue="#{role}" />
                                     </h:selectOneMenu>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
-
-                        <p:column style="width:25px">
+                        
+                        <p:column headerText="#{bundle.ListUserTitle_blocked}" sortBy="#{user.user.blocked}" filterBy="#{user.user.blocked}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{user.user.blocked}" /></f:facet>
+                                <f:facet name="input">
+                                    <h:selectOneMenu value="#{user.user.blocked}" style="width:100%">
+                                        <f:selectItems value="#{dtEditView.blocked}" var="block" itemLabel="#{block}" itemValue="#{block}" />
+                                    </h:selectOneMenu>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                                             
+                        <p:column style="width:35px">
                             <p:rowEditor />
                         </p:column>
                     </p:dataTable>
                 </h:form>
+                <div class="ui-grid-row" style="padding-top: 5%;"></div>
             </ui:define>
         </ui:composition>
     </h:body>

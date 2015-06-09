@@ -11,28 +11,28 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import entity.User;
-import crud.UserController;
+import crud.UserGroupsController;
+import entity.UserGroups;
 
 @ManagedBean(name = "dtPaginatorView")
 @ViewScoped
 public class PaginatorView implements Serializable {
 
-    private List<User> users;
+    private List<UserGroups> users;
 
-    @ManagedProperty("#{userController}")
-    private UserController service;
+    @ManagedProperty("#{userGroupsController}")
+    private UserGroupsController service;
 
     @PostConstruct
     public void init() {
         users = service.getItems();
     }
 
-    public List<User> getUsers() {
+    public List<UserGroups> getUsers() {
         return users;
     }
 
-    public void setService(UserController service) {
+    public void setService(UserGroupsController service) {
         this.service = service;
     }
 } 
