@@ -6,6 +6,7 @@
 package crud;
 
 import entity.Book;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,5 +27,9 @@ public class BookFacade extends AbstractFacade<Book> {
 
     public BookFacade() {
         super(Book.class);
+    }
+    
+    public List<Book> getBooksByTitleOrAuthor(String title, String author){
+        return em.createNamedQuery("Book.findLikeTitleOrAuthor").setParameter("title", title).setParameter("author", author).getResultList();
     }
 }
