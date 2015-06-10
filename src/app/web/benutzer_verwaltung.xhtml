@@ -79,6 +79,10 @@
                             <p:commandButton actionListener="#{benutzerLoeschenBean.erfolgreich}" id="loeschen" update="growl" icon="ui-icon-close" title="Löschen" />
                         </p:column>
                     </p:dataTable>
+                    <div class="ui-grid-row" style="padding-top: 2%;"></div>
+                    <p:fileUpload fileUploadListener="#{userupload.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                                  oncomplete="window.location.reload();" update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(csv|txt)$/" />
+                    <p:growl id="messages" showDetail="true" />
                 </h:form>
                 <div class="ui-grid-row" style="padding-top: 5%;"></div>
             </ui:define>
