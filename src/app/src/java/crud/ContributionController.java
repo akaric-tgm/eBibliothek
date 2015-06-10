@@ -3,6 +3,7 @@ package crud;
 import entity.Contribution;
 import crud.util.JsfUtil;
 import crud.util.JsfUtil.PersistAction;
+import entity.Book;
 
 import java.io.Serializable;
 import java.util.List;
@@ -82,7 +83,9 @@ public class ContributionController implements Serializable {
         }
         return items;
     }
-
+    public List<Contribution> getContributionByBookId(int bookId){
+        return ejbFacade.getEntityManager().createNamedQuery("findByBookid").setParameter("bookid", bookId).getResultList();
+    }
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
