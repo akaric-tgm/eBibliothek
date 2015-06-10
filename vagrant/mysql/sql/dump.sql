@@ -16,7 +16,7 @@ CREATE TABLE User_Groups (
  username VARCHAR(40) NOT NULL,
  
  PRIMARY KEY (username),
- FOREIGN KEY (username) REFERENCES User (username)
+ FOREIGN KEY (username) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 CREATE TABLE Book (
@@ -30,7 +30,7 @@ CREATE TABLE Book (
  views INT,
  username VARCHAR(40),
 
- FOREIGN KEY (username) REFERENCES User (username)
+ FOREIGN KEY (username) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 CREATE TABLE ChangeRequest (
@@ -40,8 +40,8 @@ CREATE TABLE ChangeRequest (
  page INT,
 
  PRIMARY KEY (username,bookid),
- FOREIGN KEY (username) REFERENCES User (username),
- FOREIGN KEY (bookid) REFERENCES Book(bookid)
+ FOREIGN KEY (username) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE ,
+ FOREIGN KEY (bookid) REFERENCES Book(bookid) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 CREATE TABLE Contribution (
@@ -51,8 +51,8 @@ CREATE TABLE Contribution (
  rating SMALLINT,
 
  PRIMARY KEY (username,bookid),
- FOREIGN KEY (username) REFERENCES User (username),
- FOREIGN KEY (bookid) REFERENCES Book(bookid)
+ FOREIGN KEY (username) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE ,
+ FOREIGN KEY (bookid) REFERENCES Book(bookid) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 CREATE TABLE Report (
@@ -63,8 +63,8 @@ CREATE TABLE Report (
  status SMALLINT,
  
  PRIMARY KEY (username,bookid),
- FOREIGN KEY (username) REFERENCES User (username),
- FOREIGN KEY (bookid) REFERENCES Book(bookid)
+ FOREIGN KEY (username) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE ,
+ FOREIGN KEY (bookid) REFERENCES Book(bookid) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 

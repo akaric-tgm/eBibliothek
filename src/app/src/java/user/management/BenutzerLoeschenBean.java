@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package user.management;
 
 import crud.UserController;
+import crud.UserGroupsController;
 import entity.User;
 import entity.UserGroups;
 import javax.enterprise.context.RequestScoped;
@@ -22,18 +23,16 @@ import javax.inject.Named;
 @RequestScoped
 public class BenutzerLoeschenBean {
     @Inject UserController uc;
-    public void erfolgreich() {
-       // FacesMessage msg = new FacesMessage("User löschen", ((UserGroups) event.getObject()).getUser().getUsername());
-        //FacesContext.getCurrentInstance().addMessage(null, msg);
-        
-       // User user = uc.findByUsername(((UserGroups) event.getObject()).getUser().getUsername());
-       // user.setUser(((UserGroups) event.getObject()).getUser());
-        //System.out.print(user.getFirstName());
-        //uc.setSelected(user);
+    @Inject UserGroupsController gc;
+    public void erfolgreich(UserGroups usergroup) {
+        gc.setSelected(usergroup);
+        gc.destroy();
+        uc.setSelected(usergroup.getUser());
+        System.out.print(uc.getSelected().getUsername());
         uc.destroy();
-        addMessage("Erfolg", "Buch wurde gelöscht!");
+        addMessage("Erfolg", uc.getSelected().getUsername()+" wurde gelöscht!");
     }
-     
+    
     public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);

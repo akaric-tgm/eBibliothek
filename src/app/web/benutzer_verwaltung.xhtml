@@ -76,7 +76,7 @@
                         </p:column>
                         <p:column style="width:35px">
                             <p:growl id="growl" life="2000" />
-                            <p:commandButton actionListener="#{benutzerLoeschenBean.erfolgreich}" id="loeschen" update="growl" icon="ui-icon-close" title="Löschen" />
+                            <p:commandButton actionListener="#{benutzerLoeschenBean.erfolgreich(user)}" id="loeschen" update="growl" icon="ui-icon-close" title="Löschen" onsuccess="window.location.reload();"/>
                         </p:column>
                     </p:dataTable>
                     <div class="ui-grid-row" style="padding-top: 2%;"></div>
