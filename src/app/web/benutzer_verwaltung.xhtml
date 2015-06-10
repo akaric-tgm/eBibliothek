@@ -27,7 +27,7 @@
                                 <f:facet name="input"><p:inputText value="#{user.user.username}" readonly="true" style="width:100%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="#{bundle.ListUserTitle_firstName}" sortBy="#{user.user.firstName}" filterBy="#{user.user.firstName}">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{user.user.firstName}" /></f:facet>
@@ -45,7 +45,12 @@
                         <p:column headerText="#{bundle.ListUserTitle_email}" sortBy="#{user.user.email}" filterBy="#{user.user.email}">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{user.user.email}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{user.user.email}" style="width:100%"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{user.user.email}" style="width:100%" validatorMessage="Invalid email format">
+                                        <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </p:inputText>
+                                </f:facet>
                             </p:cellEditor>
                         </p:column>
 
@@ -60,6 +65,8 @@
                             </p:cellEditor>
                         </p:column>
 
+
+                        <!--
                         <p:column headerText="#{bundle.ListUserTitle_blocked}" sortBy="#{user.user.blocked}" filterBy="#{user.user.blocked}">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{user.user.blocked}" /></f:facet>
@@ -68,6 +75,13 @@
                                         <f:selectItems value="#{dtEditView.blocked}" var="block" itemLabel="#{block}" itemValue="#{block}" />
                                     </h:selectOneMenu>
                                 </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        -->
+                        <p:column headerText="#{bundle.ListUserTitle_blocked}" sortBy="#{user.user.blocked}" filterBy="#{user.user.blocked}">
+                            <p:cellEditor>
+                                <f:facet name="output"><p:selectBooleanCheckbox style="margin-left: 40%" value="#{user.user.blocked}" disabled="true"/></f:facet>
+                                <f:facet name="input"><p:selectBooleanCheckbox style="margin-left: 40%" value="#{user.user.blocked}" /></f:facet>
                             </p:cellEditor>
                         </p:column>
 
