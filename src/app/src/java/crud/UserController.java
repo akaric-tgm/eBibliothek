@@ -35,6 +35,10 @@ public class UserController implements Serializable {
     public UserController() {
     }
 
+    public static String getSALT() {
+        return SALT;
+    }
+
     public boolean isLogged_in() {
         return logged_in;
     }
@@ -89,6 +93,15 @@ public class UserController implements Serializable {
     
     public User findByUsername(String username){
         List<User> user = getFacade().findByUsername(username);
+        if(user.size() <= 0){
+            return null;
+        }else{
+            return user.get(0);
+        }
+    }
+    
+    public User findByEmail(String email){
+        List<User> user = getFacade().findByEmail(email);
         if(user.size() <= 0){
             return null;
         }else{
@@ -168,10 +181,12 @@ public class UserController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
-                } else {
+                if (persistAction == PersistAction.DELETE) {
                     getFacade().remove(selected);
+                } else if(persistAction == PersistAction.UPDATE){
+                    getFacade().edit(selected);
+                } else if(persistAction == PersistAction.CREATE){
+                    getFacade().create(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -198,19 +213,6 @@ public class UserController implements Serializable {
 
     public List<User> getItemsAvailableSelectOne() {
         return getFacade().findAll();
-    }
-    
-    public void setLoginState(boolean state){
-        logged_in = state;
-    }
-    
-    public String setToLoggedOut(){
-        setLoginState(false);
-        return "index.xhmtl?faces-redirect=true";
-    }
-    
-    public boolean getLoginState(){
-        return logged_in;
     }
 
     @FacesConverter(forClass = User.class)

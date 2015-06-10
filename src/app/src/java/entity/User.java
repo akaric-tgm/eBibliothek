@@ -91,6 +91,18 @@ public class User implements Serializable {
     public User(String username) {
         this.username = username;
     }
+    
+    public User(String username, String password, String firstName, String lastName,
+            String email, String pwtoken, String emailtoken, boolean blocked) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.pwtoken = pwtoken;
+        this.emailtoken = emailtoken;
+        this.blocked = blocked;
+    }
 
     public String getUsername() {
         return username;
