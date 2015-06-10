@@ -26,7 +26,6 @@
             <div class="ui-grid-row">
                 <div class="ui-grid-col-1"></div>
                 <div class="ui-grid-col-5">
-                    <p:outputLabel value="Logged in: #{userController.loginState}" />
                     <ui:repeat var="book" value="#{bookController.getItemsBySearch(searchBookBean.searchText)}" varStatus="status">
                         <div class="ui-grid-row" style="padding-top: 30px;">
                             <div class="ui-grid-col-3">

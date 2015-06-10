@@ -5,6 +5,7 @@ import crud.util.JsfUtil;
 import crud.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,8 +29,62 @@ public class UserController implements Serializable {
     private List<User> items = null;
     private User selected;
     private boolean logged_in;
+    private User logged_in_user;
+    private static final String SALT = "bibliothek+";
 
     public UserController() {
+    }
+
+    public boolean isLogged_in() {
+        return logged_in;
+    }
+
+    public void setLogged_in(boolean logged_in) {
+        this.logged_in = logged_in;
+    }
+
+    public User getLogged_in_user() {
+        return logged_in_user;
+    }
+
+    public void setLogged_in_user(User logged_in_user) {
+        this.logged_in_user = logged_in_user;
+    }
+    
+    public String getHashedString(String text){
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = digest.digest(text.getBytes("UTF-8"));
+ 
+            StringBuffer stringBuffer = new StringBuffer();
+            for (int i = 0; i < hashedBytes.length; i++) {
+                stringBuffer.append(Integer.toString((hashedBytes[i] & 0xff) + 0x100, 16)
+                    .substring(1));
+            }
+            return stringBuffer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public String loginUser(String username, String password){
+        String hashedPassword = getHashedString(SALT+password);
+        if(isValidCredentials(username, hashedPassword)){
+            logged_in = true;
+            logged_in_user = findByUsername(username);
+            return "index?faces-redirect=true";
+        }else{
+            return "loginError?faces-redirect=true";
+        }
+    }
+    
+    public String logoutUser(){
+        if(logged_in){
+            logged_in = false;
+            logged_in_user = null;
+        }
+        return "benutzer_einloggen?faces-redirect=true";
     }
     
     public User findByUsername(String username){
