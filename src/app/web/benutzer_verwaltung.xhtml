@@ -48,18 +48,18 @@
                                 <f:facet name="input"><p:inputText value="#{user.user.email}" style="width:100%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
-                        <p:column headerText="#{bundle.ListUserTitle_role}" sortBy="#{user.userGroupsPK.groupname}" filterBy="#{user.userGroupsPK.groupname}">
+
+                        <p:column headerText="#{bundle.ListUserTitle_role}" sortBy="#{user.groupname}" filterBy="#{user.groupname}">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{user.userGroupsPK.groupname}" /></f:facet>
+                                <f:facet name="output"><h:outputText value="#{user.groupname}" /></f:facet>
                                 <f:facet name="input">
-                                    <h:selectOneMenu value="#{user.userGroupsPK.groupname}" style="width:100%">
+                                    <h:selectOneMenu value="#{user.groupname}" style="width:100%">
                                         <f:selectItems value="#{dtEditView.roles}" var="role" itemLabel="#{role}" itemValue="#{role}" />
                                     </h:selectOneMenu>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="#{bundle.ListUserTitle_blocked}" sortBy="#{user.user.blocked}" filterBy="#{user.user.blocked}">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{user.user.blocked}" /></f:facet>
@@ -70,13 +70,13 @@
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
-                                             
+
                         <p:column style="width:35px">
                             <p:rowEditor />
                         </p:column>
                         <p:column style="width:35px">
-                             <p:growl id="growl" life="2000" />
-                              <p:commandButton actionListener="#{benutzerLoeschenBean.erfolgreich}" id="loeschen" update="growl" icon="ui-icon-close" title="Löschen" />
+                            <p:growl id="growl" life="2000" />
+                            <p:commandButton actionListener="#{benutzerLoeschenBean.erfolgreich}" id="loeschen" update="growl" icon="ui-icon-close" title="Löschen" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

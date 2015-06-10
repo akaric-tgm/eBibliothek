@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,10 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByEmailtoken", query = "SELECT u FROM User u WHERE u.emailtoken = :emailtoken"),
     @NamedQuery(name = "user.findByBlocked", query = "SELECT u FROM User u WHERE u.blocked = :blocked")})
 public class User implements Serializable {
-    @Column(name = "blocked")
-    private Boolean blocked;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<UserGroups> userGroupsCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -75,14 +72,18 @@ public class User implements Serializable {
     @Size(max = 64)
     @Column(name = "emailtoken")
     private String emailtoken;
+    @Column(name = "blocked")
+    private Boolean blocked;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Report> reportCollection;
     @OneToMany(mappedBy = "username")
     private Collection<Book> bookCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<Contribution> contributionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<Report> reportCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<ChangeRequest> changeRequestCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private UserGroups userGroups;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Contribution> contributionCollection;
 
     public User() {
     }
@@ -237,13 +238,26 @@ public class User implements Serializable {
         this.blocked = blocked;
     }
 
-    @XmlTransient
-    public Collection<UserGroups> getUserGroupsCollection() {
-        return userGroupsCollection;
+    public UserGroups getUserGroups() {
+        return userGroups;
     }
 
-    public void setUserGroupsCollection(Collection<UserGroups> userGroupsCollection) {
-        this.userGroupsCollection = userGroupsCollection;
+    public void setUserGroups(UserGroups userGroups) {
+        this.userGroups = userGroups;
+    }
+    
+    public void setUser(String[] daten){
+        this.setUsername(daten[0]);
+        this.setPassword(daten[1]);
+        this.setFirstName(daten[2]);
+        this.setLastName(daten[3]);
+        this.setEmail(daten[4]);
+        this.setFid(Integer.parseInt(daten[5]));
+        this.setGid(Integer.parseInt(daten[6]));
+        this.setPwtoken(daten[7]);
+        this.setEmailtoken(daten[8]);
+        /* Group */
+        this.setBlocked(Boolean.parseBoolean(daten[9]));
     }
     
     public void setUser(User user){
@@ -254,5 +268,4 @@ public class User implements Serializable {
         /* Group */
         this.setBlocked(user.getBlocked());
     }
-    
 }

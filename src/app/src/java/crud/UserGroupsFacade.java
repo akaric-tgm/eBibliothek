@@ -6,7 +6,6 @@
 package crud;
 
 import entity.UserGroups;
-import entity.UserGroupsPK;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

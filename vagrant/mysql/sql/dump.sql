@@ -15,7 +15,7 @@ CREATE TABLE User_Groups (
  groupname VARCHAR(20) NOT NULL,
  username VARCHAR(40) NOT NULL,
  
- PRIMARY KEY (groupname, username),
+ PRIMARY KEY (username),
  FOREIGN KEY (username) REFERENCES User (username)
 );
 

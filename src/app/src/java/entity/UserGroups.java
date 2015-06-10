@@ -6,13 +6,19 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -24,33 +30,52 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserGroups.findAll", query = "SELECT u FROM UserGroups u"),
-    @NamedQuery(name = "UserGroups.findByGroupname", query = "SELECT u FROM UserGroups u WHERE u.userGroupsPK.groupname = :groupname"),
-    @NamedQuery(name = "UserGroups.findByUsername", query = "SELECT u FROM UserGroups u WHERE u.userGroupsPK.username = :username")})
+    @NamedQuery(name = "UserGroups.findByGroupname", query = "SELECT u FROM UserGroups u WHERE u.groupname = :groupname"),
+    @NamedQuery(name = "UserGroups.findByUsername", query = "SELECT u FROM UserGroups u WHERE u.username = :username")})
 public class UserGroups implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected UserGroupsPK userGroupsPK;
+    
+     private static final long serialVersionUID = 1L;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "groupname")
+    private String groupname;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "username")
+    private String username;
     @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     private User user;
 
     public UserGroups() {
     }
 
-    public UserGroups(UserGroupsPK userGroupsPK) {
-        this.userGroupsPK = userGroupsPK;
+    public UserGroups(String username) {
+        this.username = username;
     }
 
-    public UserGroups(String groupname, String username) {
-        this.userGroupsPK = new UserGroupsPK(groupname, username);
+    public UserGroups(String username, String groupname) {
+        this.username = username;
+        this.groupname = groupname;
     }
 
-    public UserGroupsPK getUserGroupsPK() {
-        return userGroupsPK;
+    public String getGroupname() {
+        return groupname;
     }
 
-    public void setUserGroupsPK(UserGroupsPK userGroupsPK) {
-        this.userGroupsPK = userGroupsPK;
+    public void setGroupname(String groupname) {
+        this.groupname = groupname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public User getUser() {
@@ -64,7 +89,7 @@ public class UserGroups implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (userGroupsPK != null ? userGroupsPK.hashCode() : 0);
+        hash += (username != null ? username.hashCode() : 0);
         return hash;
     }
 
@@ -75,7 +100,7 @@ public class UserGroups implements Serializable {
             return false;
         }
         UserGroups other = (UserGroups) object;
-        if ((this.userGroupsPK == null && other.userGroupsPK != null) || (this.userGroupsPK != null && !this.userGroupsPK.equals(other.userGroupsPK))) {
+        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
         return true;
@@ -83,7 +108,7 @@ public class UserGroups implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.UserGroups[ userGroupsPK=" + userGroupsPK + " ]";
+        return "entity.UserGroups[ username=" + username + " ]";
     }
     
 }

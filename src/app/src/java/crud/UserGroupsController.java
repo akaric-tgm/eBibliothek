@@ -3,8 +3,6 @@ package crud;
 import entity.UserGroups;
 import crud.util.JsfUtil;
 import crud.util.JsfUtil.PersistAction;
-import entity.UserGroupsPK;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -55,15 +53,6 @@ public class UserGroupsController implements Serializable {
             return user.get(0);
         }
     }
-    
-    public UserGroupsPK findByUsernamePK(String username){
-        List<UserGroups> user = getFacade().findByUsername(username);
-        if(user.size() <= 0){
-            return null;
-        }else{
-            return user.get(0).getUserGroupsPK();
-        }
-    }
 
     public UserGroups getSelected() {
         return selected;
@@ -74,11 +63,9 @@ public class UserGroupsController implements Serializable {
     }
 
     protected void setEmbeddableKeys() {
-        selected.getUserGroupsPK().setUsername(selected.getUser().getUsername());
     }
 
     protected void initializeEmbeddableKey() {
-        selected.setUserGroupsPK(new entity.UserGroupsPK());
     }
 
     private UserGroupsFacade getFacade() {
@@ -153,11 +140,11 @@ public class UserGroupsController implements Serializable {
         }
     }
 
-    public UserGroups getUserGroups(entity.UserGroupsPK id) {
+    public UserGroups getUserGroups(java.lang.String id) {
         return getFacade().find(id);
     }
 
-    public List<UserGroups> getItemsAvailableSelectMany() {
+public List<UserGroups> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
@@ -167,9 +154,6 @@ public class UserGroupsController implements Serializable {
 
     @FacesConverter(forClass = UserGroups.class)
     public static class UserGroupsControllerConverter implements Converter {
-
-        private static final String SEPARATOR = "#";
-        private static final String SEPARATOR_ESCAPED = "\\#";
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
@@ -181,20 +165,15 @@ public class UserGroupsController implements Serializable {
             return controller.getUserGroups(getKey(value));
         }
 
-        entity.UserGroupsPK getKey(String value) {
-            entity.UserGroupsPK key;
-            String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new entity.UserGroupsPK();
-            key.setGroupname(values[0]);
-            key.setUsername(values[1]);
+        java.lang.String getKey(String value) {
+            java.lang.String key;
+            key = value;
             return key;
         }
 
-        String getStringKey(entity.UserGroupsPK value) {
+        String getStringKey(java.lang.String value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value.getGroupname());
-            sb.append(SEPARATOR);
-            sb.append(value.getUsername());
+            sb.append(value);
             return sb.toString();
         }
 
@@ -205,7 +184,7 @@ public class UserGroupsController implements Serializable {
             }
             if (object instanceof UserGroups) {
                 UserGroups o = (UserGroups) object;
-                return getStringKey(o.getUserGroupsPK());
+                return getStringKey(o.getUsername());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), UserGroups.class.getName()});
                 return null;
