@@ -21,7 +21,7 @@ public class Parameters{
     public static int browser = FIREFOX; //HIER BROWSER AENDERN
     public static int port = 8080; //HIER PORT AENDERN
 
-    public static String baseUrl = "localhost:"+port+"/app";
+    public static String baseUrl = "http://localhost:"+port+"/app";
 
     public static WebDriver driver;
 
