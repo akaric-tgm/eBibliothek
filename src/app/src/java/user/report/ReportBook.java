@@ -23,6 +23,15 @@ public class ReportBook implements Serializable{
     private String message;
     private String reason;
     private HashMap<String,Integer> reportByBook;
+    private int bookID;
+
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
+    }
+
+    public int getBookID() {
+        return bookID;
+    }
    
     public void initialiseReportByBook(){
         reportByBook = new HashMap<>();

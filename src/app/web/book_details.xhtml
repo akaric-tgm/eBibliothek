@@ -32,7 +32,7 @@
                             <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).views} mal gelesen" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
                             <p:outputLabel value="hochgeladen von #{bookController.getBookByBookId(bookController.getContextParameter()).username}" style="font-family: 'Times New Roman'; font-size: 32px;"/><br />
                             <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).downloads} mal gedownloadet" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
-                            <p:outputLabel value="Dieses Buch wurde #{reportBook.getReportByBook(bookController.getBookByBookId(1))} mal gemeldet" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
+                            <p:outputLabel value="Dieses Buch wurde #{reportBook.getReportByBook(bookController.getContextParameter())} mal gemeldet" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
                         </div>
                         <div class="ui-grid-4">
                             <p:button value="Buch lesen"/><br />
@@ -42,11 +42,11 @@
                             </p:button><br />
                             <div style="margin-top: 10px;"></div>
                             <p:button outcome="rate_book" value="Buch bewerten">
-                                <f:param name="book" value="12345" />
+                                <f:param name="book" value="#{bookController.getContextParameter()}" />
                             </p:button>
                             <div style="margin-top: 10px;"></div>
                             <p:button outcome="buch_melden" value="Buch melden">
-                                <f:param name="book" value="#{bookController.getBookByBookId(1)}" />
+                                <f:param name="book" value="#{bookController.getContextParameter()}" />
                             </p:button>
                             <div style="margin-top: 10px;"></div>
                             <h:form>        

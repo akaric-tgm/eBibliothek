@@ -8,13 +8,18 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
 <h:body>
+    <f:metadata>
+        <f:viewParam name="book" value="#{reportBook.bookID}"/>
+        <f:viewParam name="username" value="akaric"/>
+    </f:metadata>
+    
     <ui:composition template="basic_design.xhtml">
         <ui:define name="content">
             <div class="ui-grid-row">
                 <div class="ui-grid-col-4"></div>
                 <div class="ui-grid-col-4">
                     <h:form>
-                        <h2>Buch "#{bookController.getBookByBookId(1).title}" melden</h2>
+                        <h2>Buch "#{bookController.getBookByBookId(reportBook.bookID).title}" melden</h2>
                         <p:inputTextarea rows="5" cols="50" counter="display" maxlength="350"
                                          counterTemplate="Noch {0} Zeichen übrig." value="#{reportBook.message}" autoResize="true" />
                         <br />
@@ -38,7 +43,7 @@
                             </div>
 
                             <div class="ui-grid-col-4">
-                                <p:commandButton value="Submit" icon="ui-icon-check" action="#{reportBook.incrementReportcounter(bookController.getBookByBookId(1))}" ajax="false" />
+                                <p:commandButton value="Submit" icon="ui-icon-check" action="#{reportBook.incrementReportcounter(reportBook.bookID)}" ajax="false" />
                             </div>
                         </div>
 

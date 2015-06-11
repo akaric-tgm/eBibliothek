@@ -18,7 +18,7 @@
                 <div class="ui-grid-col-4"></div>
                 <div class="ui-grid-col-4">
                     <h:form>
-                        <h2>Buch "#{bookController.getBookByBookId(1).title}" bewerten"</h2>
+                        <h2>Buch "#{bookController.getBookByBookId(rateBook.bookId).title}" bewerten</h2>
                        
                         <p:inputTextarea rows="5" cols="50" counter="display" maxlength="1000"
                                          counterTemplate="Noch {0} Zeichen übrig." value="#{rateBook.message}" autoResize="true"
