@@ -21,9 +21,10 @@ import javax.inject.Named;
  */
 @Named("benutzerRegistrierenBean")
 @SessionScoped
-public class BenutzerRegistrierenBean implements Serializable{
+public class BenutzerRegistrierenBean implements Serializable {
+
     private String errorMessages = "";
-    
+
     private String username = "";
     private String password = "";
     private String passwordConfirm = "";
@@ -31,30 +32,31 @@ public class BenutzerRegistrierenBean implements Serializable{
     private String lastName = "";
     private String email = "";
     private String emailConfirm = "";
-    
+
     @Inject
     private UserController userController;
     @Inject
     private UserGroupsController userGroupsController;
-    
-    public String signup(){
-        if(userController.findByUsername(username) == null){
-            if(userController.findByEmail(email) == null){
-                User user = new User(username, userController.getHashedString(UserController.getSALT()+password), 
-                        firstName, lastName, email, 
-                        userController.getHashedString(UserController.getSALT()+username+"resetpassword"), 
-                        userController.getHashedString(UserController.getSALT()+username+"confirmemail"), false);
+
+    public String signup() {
+        if (userController.findByUsername(username) == null) {
+            if (userController.findByEmail(email) == null) {
+                User user = new User(username, userController.getHashedString(UserController.getSALT() + password),
+                        firstName, lastName, email,
+                        userController.getHashedString(UserController.getSALT() + username + "resetpassword"),
+                        userController.getHashedString(UserController.getSALT() + username + "confirmemail"), false);
                 userController.setSelected(user);
                 userController.create();
                 UserGroups userGroups = new UserGroups(username, "User");
+                userGroups.setUser(user);
                 userGroupsController.setSelected(userGroups);
                 userGroupsController.create();
                 return "benutzer_einloggen?faces-redirect=true";
-            }else{
+            } else {
                 errorMessages += "E-Mail Adresse bereits vergeben!";
                 return " ";
             }
-        }else{
+        } else {
             errorMessages += "Username bereits vergeben! Bitte wähle einen anderen!";
             return " ";
         }
@@ -123,6 +125,5 @@ public class BenutzerRegistrierenBean implements Serializable{
     public void setEmailConfirm(String emailConfirm) {
         this.emailConfirm = emailConfirm;
     }
-    
-    
+
 }
