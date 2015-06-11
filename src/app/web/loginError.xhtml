@@ -15,7 +15,7 @@
                 <div class="ui-grid-col-4">
                     <h:form>
                         <h2>Login am System</h2>
-                        <span style="font-size: 18px;color: red;">Fehler! Username oder Passwort falsch!</span>
+                        <span id="loginErrorMessage" style="font-size: 18px;color: red;">Fehler! Username oder Passwort falsch!</span>
                         <br />
                         <p:inputText id="username" value="#{loginBean.username}" placeholder="Username"/><br />
                         <p:password id="password" value="#{loginBean.password}" placeholder="Passwort" style="margin-top: 3px;"/><br />

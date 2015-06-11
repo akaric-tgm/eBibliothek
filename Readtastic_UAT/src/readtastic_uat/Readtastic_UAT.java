@@ -8,6 +8,7 @@ public class Readtastic_UAT {
     public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(Search.class);
+        suite.addTestSuite(Login.class);
 
         return suite;
     }

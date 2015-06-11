@@ -4,13 +4,16 @@ import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 
 import junit.framework.TestCase;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.fail;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Search extends TestCase{
+public class Login extends TestCase{
 	private WebDriver driver;
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -21,31 +24,29 @@ public class Search extends TestCase{
 		Parameters.setUpBrowser();
 		this.driver = Parameters.driver;
 		this.baseUrl = Parameters.baseUrl;
+
+	}
+
+	@Test
+	public void testLoginWrongCredentials() throws Exception {
+		driver.get(baseUrl + "/benutzer_einloggen.xhtml");
+		driver.findElement(By.xpath("//*[contains(@id,'username')]")).clear();
+		driver.findElement(By.xpath("//*[contains(@id,'username')]")).sendKeys("asd");
+		driver.findElement(By.xpath("//*[contains(@id,'password')]")).clear();
+		driver.findElement(By.xpath("//*[contains(@id,'password')]")).sendKeys("asd");
+		driver.findElement(By.xpath("//*[contains(@id,'submit')]")).click();
+                assertTrue(driver.findElement(By.xpath("//*[contains(@id,'loginErrorMessage')]")).isDisplayed());
+	}
+        
+        @Test
+	public void testLoginSuccess() throws Exception {
 		driver.get(baseUrl + "/benutzer_einloggen.xhtml");
 		driver.findElement(By.xpath("//*[contains(@id,'username')]")).clear();
 		driver.findElement(By.xpath("//*[contains(@id,'username')]")).sendKeys("sbrinnich");
 		driver.findElement(By.xpath("//*[contains(@id,'password')]")).clear();
 		driver.findElement(By.xpath("//*[contains(@id,'password')]")).sendKeys("passwort");
 		driver.findElement(By.xpath("//*[contains(@id,'submit')]")).click();
-
-	}
-
-	@Test
-	public void testSearchBookByTitle() throws Exception {
-		driver.get(baseUrl + "/index.xhtml");
-		driver.findElement(By.xpath("//*[contains(@id,'search')]")).clear();
-		driver.findElement(By.xpath("//*[contains(@id,'search')]")).sendKeys("Harry Potter 1");
-		driver.findElement(By.xpath("//*[contains(@id,'submitSearch')]")).click();
-		assertFalse(driver.getPageSource().contains("Harry Potter 2")); 
-	}
-        
-        @Test
-	public void testSearchBookByAuthor() throws Exception {
-		driver.get(baseUrl + "/index.xhtml");
-		driver.findElement(By.xpath("//*[contains(@id,'search')]")).clear();
-		driver.findElement(By.xpath("//*[contains(@id,'search')]")).sendKeys("Joanne K. Rowling");
-		driver.findElement(By.xpath("//*[contains(@id,'submitSearch')]")).click();
-		assertTrue(driver.getPageSource().contains("Harry Potter 1")); 
+                assertTrue(driver.getPageSource().contains("Eingeloggt als sbrinnich"));
 	}
 
 	@After
