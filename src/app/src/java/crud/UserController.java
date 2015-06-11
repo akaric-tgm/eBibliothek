@@ -28,7 +28,7 @@ public class UserController implements Serializable {
     private crud.UserFacade ejbFacade;
     private List<User> items = null;
     private User selected;
-    private boolean logged_in;
+    private boolean logged_in = false;
     private User logged_in_user;
     private static final String SALT = "bibliothek+";
 
