@@ -31,9 +31,14 @@ public class Parameters{
                 driver = new FirefoxDriver();
                 break;
             case INTERNET_EXPLORER:
-                System.setProperty("webdriver.ie.driver", "webdrivers/iedriver_"+os);
-                DesiredCapabilities caps = DesiredCapabilities.internetExplorer(); caps.setCapability(InternetExplorerDriver.INITIAL_BROWSER_URL, "");
-                driver = new InternetExplorerDriver(caps);
+                if(os.equals(WINDOWS)){
+                    System.setProperty("webdriver.ie.driver", "webdrivers/iedriver_"+os);
+                    DesiredCapabilities caps = DesiredCapabilities.internetExplorer(); caps.setCapability(InternetExplorerDriver.INITIAL_BROWSER_URL, "");
+                    driver = new InternetExplorerDriver(caps);
+                }else{
+                    System.err.println("Internet Explorer wird von dem gewählten Betriebssystem nicht unterstützt!");
+                    System.exit(1);
+                }
 
                 break;
             case CHROME:
