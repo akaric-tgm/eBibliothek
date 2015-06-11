@@ -14,8 +14,8 @@
             <div class="ui-grid-row">
                 <div class="ui-grid-col-4"></div>
                 <div class="ui-grid-col-4">
-                    <p:inputText placeholder="Buch suchen" value="#{searchBookBean.searchText}"/>
-                    <p:commandButton process="@form" update="@form" value="" icon="ui-icon-search" 
+                    <p:inputText id="search" placeholder="Buch suchen" value="#{searchBookBean.searchText}"/>
+                    <p:commandButton id="submitSearch" process="@form" update="@form" value="" icon="ui-icon-search" 
                                     style="padding-top: 12px; padding-bottom: 8px;">
                     </p:commandButton>
                     <br />

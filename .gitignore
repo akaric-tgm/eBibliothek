@@ -27,3 +27,4 @@ nbactions.xml
 nb-configuration.xml
 .nb-gradle/
 /src/app/nbproject/private/
+/Readtastic_UAT/nbproject/private/

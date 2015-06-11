@@ -17,7 +17,7 @@
                         <h2>Login am System</h2>
                         <p:inputText id="username" value="#{loginBean.username}" placeholder="Username"/><br />
                         <p:password id="password" value="#{loginBean.password}" placeholder="Passwort" style="margin-top: 3px;"/><br />
-                        <p:commandButton value="Login" action="#{loginBean.validateLogin()}" style="margin-top: 10px;"/>
+                        <p:commandButton id="submit" value="Login" action="#{loginBean.validateLogin()}" style="margin-top: 10px;"/>
                     </h:form>
                 </div>
                 <div class="ui-grid-col-4">
