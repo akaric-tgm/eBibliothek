@@ -43,7 +43,7 @@
                             <p:button value="Buch lesen"/><br />
                             <div style="margin-top: 10px;"></div>
                             <p:button outcome="download_book" value="Buch herunterladen">
-                                <f:param name="book" value="12345" />
+                                <f:param name="book" value="#{bookController.getContextParameter()}" />
                             </p:button><br />
                             <div style="margin-top: 10px;"></div>
                             <p:button outcome="rate_book" value="Buch bewerten">
