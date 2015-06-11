@@ -54,14 +54,15 @@
                             <!-- Add Menu-Items here -->
                             <p:menuitem value="Home" outcome="index"/>
                             <p:submenu label="Testy">
-                                <p:menuitem value="Logout" outcome="benutzer_ausloggen" />
                                 <p:menuitem value="Passwort zurücksetzen" outcome="reset_password" />
                                 <p:menuitem value="Benutzerverwaltung" outcome="benutzer_verwaltung" />
                             </p:submenu>
                             <p:menuitem value="Impressum" outcome="impressum" />
                             <f:facet name="options">
-                                <p:button value="Login" outcome="benutzer_einloggen" icon="ui-icon-extlink" />
-                                <p:button outcome="benutzer_registrieren" value="Registrieren" icon="ui-icon-extlink" />
+                                <p:button value="Login" outcome="benutzer_einloggen" icon="ui-icon-extlink" rendered="#{!userController.logged_in}"/>
+                                <p:button outcome="benutzer_registrieren" value="Registrieren" icon="ui-icon-extlink" rendered="#{!userController.logged_in}"/>
+                                <p:outputLabel id="loggedInAs" value="Eingeloggt als #{userController.logged_in_user.username}" rendered="#{userController.logged_in}" style="padding-right: 20px;"/>
+                                <p:commandButton id="submit" value="Logout" action="#{userController.logoutUser()}" icon="ui-icon-extlink" rendered="#{userController.logged_in}"/>
                             </f:facet>
                         </p:menubar>
                     </h:form>

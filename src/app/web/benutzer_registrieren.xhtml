@@ -15,6 +15,7 @@
                     <div class="ui-grid-col-4"></div>
                     <div class="ui-grid-col-4">
                         <h2>Registrieren</h2>
+                        <p:outputLabel id="errorMessages" value="#{benutzerRegistrierenBean.errorMessages}" />
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                         <p:inputText id="username" required="true" requiredMessage="Bitte wähle einen Usernamen!"
                                      placeholder="Username" style="margin-top: 3px;" value="#{benutzerRegistrierenBean.username}"/>
@@ -28,14 +29,14 @@
                         <p:inputText id="email" required="true" requiredMessage="Bitte gib deine E-Mail Adresse an!"
                                      placeholder="E-Mail Adresse" style="margin-top: 3px;" value="#{benutzerRegistrierenBean.email}"/>
                         <p:inputText id="emailConfirm" required="true" requiredMessage="Bitte wiederhole deine E-Mail Adresse!"
-                                     placeholder="E-Mail Wiederholung" style="margin-top: 3px; margin-left: 10px;"/>
+                                     placeholder="E-Mail Wiederholung" style="margin-top: 3px; margin-left: 10px;" value="#{benutzerRegistrierenBean.emailConfirm}"/>
                         <br />
                         <p:password id="password" required="true" requiredMessage="Bitte wähle ein Passwort!"
                                     placeholder="Passwort" style="margin-top: 3px;" value="#{benutzerRegistrierenBean.password}"/>
-                        <p:password id="passwordConfirm" required="true" requiredMessage="Bitte wiederhole dein Passwort!"
-                                    match="password" placeholder="Passwort Wiederholung" style="margin-top: 3px; margin-left: 10px;"/>
+                        <p:password id="passwordConfirm" required="true" requiredMessage="Bitte wiederhole dein Passwort!" value="#{benutzerRegistrierenBean.passwordConfirm}"
+                                    placeholder="Passwort Wiederholung" style="margin-top: 3px; margin-left: 10px;"/>
                         <br />
-                        <p:commandButton value="Registrieren" action="#{benutzerRegistrierenBean.persist}" icon="ui-icon-check" style="margin-top: 10px;"/>
+                        <p:commandButton value="Registrieren" action="#{benutzerRegistrierenBean.signup()}" icon="ui-icon-check" style="margin-top: 10px;"/>
                     </div>
                     <div class="ui-grid-col-4"></div>
                 </div>

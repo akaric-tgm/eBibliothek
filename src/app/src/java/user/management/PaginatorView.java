@@ -14,6 +14,12 @@ import javax.faces.bean.ViewScoped;
 import crud.UserGroupsController;
 import entity.UserGroups;
 
+/**
+ * Diese Klasse stellt einen Paginator dar, er holt sich die Daten aus der DB und leitet sie an die View weiter
+ * @author Philipp Adler
+ * @version 2015-06-11
+ */
+
 @ManagedBean(name = "dtPaginatorView")
 @ViewScoped
 public class PaginatorView implements Serializable {
@@ -23,16 +29,26 @@ public class PaginatorView implements Serializable {
     @ManagedProperty("#{userGroupsController}")
     private UserGroupsController service;
 
+    /**
+     * Diese Methode holt sich die UserGroups aus der DB
+     */
     @PostConstruct
     public void init() {
-        System.out.println("A");
         users = service.getItems();
     }
 
+    /**
+     * Diese Getter-Methode gibt alle UserGroups als Liste aus
+     * @return Liste der Usergroups
+     */
     public List<UserGroups> getUsers() {
         return users;
     }
 
+    /**
+     * Hier wird Controller fuer die UserGroup veraendert
+     * @param service der neue Controller
+     */
     public void setService(UserGroupsController service) {
         this.service = service;
     }

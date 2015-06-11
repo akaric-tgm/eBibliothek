@@ -13,12 +13,12 @@
             <div class="ui-grid-row">
                 <div class="ui-grid-col-2"></div>
                 <div class="ui-grid-col-4">
-                    <form method="POST" action="j_security_check">
+                    <h:form>
                         <h2>Login am System</h2>
-                        <input type="text" id="username" name="j_username" placeholder="Username"/><br />
-                        <input type="password" id="password" name="j_password" placeholder="Passwort" style="margin-top: 3px;"/><br />
-                        <input type="submit" name="submit" value="Login" action="#{userController.setLoginState(true)}" style="margin-top: 10px;"/>
-                    </form>
+                        <p:inputText id="username" value="#{loginBean.username}" placeholder="Username"/><br />
+                        <p:password id="password" value="#{loginBean.password}" placeholder="Passwort" style="margin-top: 3px;"/><br />
+                        <p:commandButton id="submit" value="Login" action="#{loginBean.validateLogin()}" style="margin-top: 10px;"/>
+                    </h:form>
                 </div>
                 <div class="ui-grid-col-4">
                     <h2>Login mit Sozialen Netzwerken</h2>
