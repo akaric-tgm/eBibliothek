@@ -19,8 +19,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
 import org.primefaces.event.FileUploadEvent;
+
+/**
+ * Diese erlaubt des dem Admin csv Files hochzuladen.
+ * Die Daten vom csv File werden entnommen und in die Datenbank gespeichert
+ * @author Philipp Adler
+ * @version 2015-06-11
+ */
 
 @ManagedBean(name = "userupload")
 public class UserUpload {
@@ -28,6 +34,10 @@ public class UserUpload {
     @Inject
     private UserGroupsController usergroupscontroller;
 
+    /**
+     * In dieser Methode kann man Files hochladen
+     * @param event Filedaten wie Inhalt
+     */
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -41,7 +51,10 @@ public class UserUpload {
 
     }
 
-    // convert InputStream to String
+    /**
+     * Diese Methode liest den InputStream aus und speichert die Daten in die Datenbank
+     * @param is der Inputstream wo alle Daten des Files drin stehen
+     */
     private void insertintoDB(InputStream is) {
 
         BufferedReader br = null;
