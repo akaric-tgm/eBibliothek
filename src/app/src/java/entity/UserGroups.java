@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Diese Entity stellt ein UserGroup von der ebibliothek dar.
+ * Diese Entity stellt eine UserGroup von der ebibliothek dar.
  * @author Philipp Adler
  * @version 2015-06-11
  */
@@ -49,13 +49,25 @@ public class UserGroups implements Serializable {
     @OneToOne(optional = false)
     private User user;
 
+    /**
+     * Default-Konstruktor
+     */
     public UserGroups() {
     }
 
+    /**
+     * Konstruktor wo man den Primarykey, den Username, als Parameter angibt
+     * @param username der eindeutige Username fuer den User
+     */
     public UserGroups(String username) {
         this.username = username;
     }
 
+    /**
+     * Konstruktor der alle Attribute vom Benutzer als Parameter verlangt
+     * @param username der eindeutige Username fuer den User
+     * @param groupname hier gibt man ob der User ein Admin,Moderator oder User ist
+     */
     public UserGroups(String username, String groupname) {
         this.username = username;
         this.groupname = groupname;
@@ -69,22 +81,42 @@ public class UserGroups implements Serializable {
         this.groupname = groupname;
     }
 
+    /**
+     * Das ist die Getter-Methode fuer den Username
+     * @return den Username der UserGroup
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Die Methode aendert den eindeutigen Usernamen
+     * @param username der neue Username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Das ist die Getter-Methode die von der UserGroup den User zurueck gibt
+     * @return den User als Objekt
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Die Methode aendert den User
+     * @param user das neue User-Objekt
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     * Die hashCode-Methode gibt den Hashcode der UserGroup zurueck
+     * @return den Hash der UserGroup
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -92,6 +124,11 @@ public class UserGroups implements Serializable {
         return hash;
     }
 
+    /**
+     * Die equals Methode vergleicht die UserGroup mit einer anderen, uebergebenen, UserGroup
+     * @param object die UserGroup die mit dem anderen verglichen wird
+     * @return ob die uebergebene UserGroup ident mit der anderen ist
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -105,6 +142,10 @@ public class UserGroups implements Serializable {
         return true;
     }
 
+    /**
+     * Die toString-Methode gibt alle wichtigen Daten der UserGroup aus
+     * @return UserGroupdaten
+     */
     @Override
     public String toString() {
         return "entity.UserGroups[ username=" + username + " ]";

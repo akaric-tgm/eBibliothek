@@ -6,7 +6,6 @@ import crud.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +19,12 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 
+/**
+ * Diese Klasse stellt den Controller des Users dar
+ * @author Philipp Adler
+ * @version 2015-06-11
+ */
+
 @Named("userController")
 @SessionScoped
 public class UserController implements Serializable {
@@ -32,6 +37,9 @@ public class UserController implements Serializable {
     private User logged_in_user;
     private static final String SALT = "bibliothek+";
 
+    /**
+     * Default Konstruktor
+     */
     public UserController() {
     }
 
@@ -39,22 +47,43 @@ public class UserController implements Serializable {
         return SALT;
     }
 
+    /**
+     * Diese Methode gibt aus ob der User eingeloggt ist
+     * @return den Status des Login
+     */
     public boolean isLogged_in() {
         return logged_in;
     }
 
+    /**
+     * Die Methode aendert den Status des Logins
+     * @param logged_in true der User ist eingeloggt, false der User ist nicht eingeloggt
+     */
     public void setLogged_in(boolean logged_in) {
         this.logged_in = logged_in;
     }
 
+    /**
+     * Die Getter-Methode gibt aus welcher User eingeloggt ist
+     * @return der eingeloggte User
+     */
     public User getLogged_in_user() {
         return logged_in_user;
     }
 
+    /**
+     * Die Methode aendert den User der eingeloggt ist
+     * @param logged_in_user der neue User der eingeloggt ist
+     */
     public void setLogged_in_user(User logged_in_user) {
         this.logged_in_user = logged_in_user;
     }
     
+    /**
+     * Diese Methode verschluesselt den Uebergebenen Text
+     * @param text der Text bzw. das Passwort, welches verschluesselt wird
+     * @return den verschluesselten Text
+     */
     public String getHashedString(String text){
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -72,6 +101,12 @@ public class UserController implements Serializable {
         }
     }
     
+    /**
+     * Diese Methode loggt den User ein und kontrolliert ob der Username & das Passwort korrekt eingegeben wurden
+     * @param username der Username 
+     * @param password das Passwort
+     * @return die URL wo der User weitergeleitet wird
+     */
     public String loginUser(String username, String password){
         String hashedPassword = getHashedString(SALT+password);
         if(isValidCredentials(username, hashedPassword)){
@@ -83,6 +118,10 @@ public class UserController implements Serializable {
         }
     }
     
+    /**
+     * Hier wird der User ausgeloggt
+     * @return die URL zum Login
+     */
     public String logoutUser(){
         if(logged_in){
             logged_in = false;
@@ -91,6 +130,11 @@ public class UserController implements Serializable {
         return "benutzer_einloggen?faces-redirect=true";
     }
     
+    /**
+     * findByUsername sucht in der Datenbank nach einem bestimmten User
+     * @param username der User der gesucht werden soll
+     * @return den gefundenen User, falls es ihn nicht gibt wird ein leeres Objekt zurueck gegeben
+     */
     public User findByUsername(String username){
         List<User> user = getFacade().findByUsername(username);
         if(user.size() <= 0){
@@ -100,6 +144,11 @@ public class UserController implements Serializable {
         }
     }
     
+    /**
+     * findByEmail sucht in der Datenbank nach einem bestimmten User
+     * @param email der User der nach der Email gesucht werden soll
+     * @return den gefundenen User, falls es ihn nicht gibt wird ein leeres Objekt zurueck gegeben
+     */
     public User findByEmail(String email){
         List<User> user = getFacade().findByEmail(email);
         if(user.size() <= 0){
@@ -109,6 +158,12 @@ public class UserController implements Serializable {
         }
     }
     
+    /**
+     * Diese Methode ueberprueft ob die Logindaten korrekt sind
+     * @param username der Username
+     * @param password das Passwort
+     * @return ob die Daten richtig sind und der User die ebibliothek betreten darf
+     */
     public boolean isValidCredentials(String username, String password){
         List<User> user= getFacade().findByUsername(username);
         if(user.size() <= 0){
@@ -118,6 +173,12 @@ public class UserController implements Serializable {
         }
     }
     
+    /**
+     * Diese Methode ueberprueft ob die Logindaten korrekt sind
+     * @param username der Username
+     * @param email das Email-Adresse
+     * @return ob die Daten richtig sind und der User die ebibliothek betreten darf
+     */
     public boolean isValidUsernameAndEmail(String username, String email){
         List<User> user= getFacade().findByUsername(username);
         if(user.size() <= 0){
@@ -127,10 +188,18 @@ public class UserController implements Serializable {
         }
     }
 
+    /**
+     * Gibt aus welcher User selected wurde
+     * @return der ausgewaehlte User
+     */
     public User getSelected() {
         return selected;
     }
 
+    /**
+     * Diese Methode selectiert einen User mit dem man dan ein Update,Create,Drop durchfuehren kann
+     * @param selected der User der ausgewaehlt wird
+     */
     public void setSelected(User selected) {
         this.selected = selected;
     }
@@ -141,16 +210,27 @@ public class UserController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
+    /**
+     * Diese Getter-Methode gibt die UserFacade zurueck die mit der DB in Verbindung steht
+     * @return die UserFacade
+     */
     private UserFacade getFacade() {
         return ejbFacade;
     }
 
+    /**
+     * Diese Methode erzeugt einen neuen User
+     * @return den neu erzeugten User
+     */
     public User prepareCreate() {
         selected = new User();
         initializeEmbeddableKey();
         return selected;
     }
 
+    /**
+     * Hier wird der selectierte User erzeugt
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -158,10 +238,16 @@ public class UserController implements Serializable {
         }
     }
 
+    /**
+     * Hier wird der selectierte User geupdatet
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
     }
 
+    /**
+     * Hier wird der selectierte User geloescht
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UserDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -170,6 +256,10 @@ public class UserController implements Serializable {
         }
     }
 
+    /**
+     * Diese Methode gibt alle in der DB vorhandenen User als Liste zurueck
+     * @return die List der User
+     */
     public List<User> getItems() {
         if (items == null) {
             items = getFacade().findAll();
@@ -177,6 +267,11 @@ public class UserController implements Serializable {
         return items;
     }
 
+    /**
+     * Diese Methode ruft die CRUD Methoden auf welche die Daten in der DB aendern
+     * @param persistAction gibt an welchen CRUD Befehl ausgefuehrt werden soll
+     * @param successMessage wenn das CRUD erfolgreich war wird ein Pop-up mit der uebergebenen Message ausgegeben
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -207,10 +302,18 @@ public class UserController implements Serializable {
         }
     }
 
+    /**
+     * Diese Methode gibt alle in der DB vorhandenen User als Liste zurueck
+     * @return die List der User
+     */
     public List<User> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
+    /**
+     * Diese Methode gibt alle in der DB vorhandenen User als Liste zurueck
+     * @return die List der User
+     */
     public List<User> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }

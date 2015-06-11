@@ -18,6 +18,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+/**
+ * Diese Klasse stellt den Controller der UserGroup dar
+ * @author Philipp Adler
+ * @version 2015-06-11
+ */
+
 @Named("userGroupsController")
 @SessionScoped
 public class UserGroupsController implements Serializable {
@@ -42,9 +48,17 @@ public class UserGroupsController implements Serializable {
         blocked[1] = "false";
     }
 
+    /**
+     * Default Konstruktor
+     */
     public UserGroupsController() {
     }
     
+    /**
+     * findByUsername sucht in der Datenbank nach einer bestimmten UserGroup
+     * @param username die UserGroup nach der gesucht werden soll
+     * @return die gefundenen UserGroup, falls es ihn nicht gibt wird ein leeres Objekt zurueck gegeben
+     */
     public UserGroups findByUsername(String username){
         List<UserGroups> user = getFacade().findByUsername(username);
         if(user.size() <= 0){
@@ -54,10 +68,18 @@ public class UserGroupsController implements Serializable {
         }
     }
 
+    /**
+     * Gibt aus welche UserGroup selected wurde
+     * @return die ausgewaehlte UserGroup
+     */
     public UserGroups getSelected() {
         return selected;
     }
 
+    /**
+     * Diese Methode selectiert eine UserGroup mit der man dann ein Update,Create,Drop durchfuehren kann
+     * @param selected die UserGroup die ausgewaehlt wird
+     */
     public void setSelected(UserGroups selected) {
         this.selected = selected;
     }
@@ -68,16 +90,27 @@ public class UserGroupsController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
+    /**
+     * Diese Getter-Methode gibt die UserGroupsFacade zurueck die mit der DB in Verbindung steht
+     * @return die UserGroupsFacade
+     */
     private UserGroupsFacade getFacade() {
         return ejbFacade;
     }
 
+    /**
+     * Diese Methode erzeugt eine neue UserGroup
+     * @return die neu erzeugte UserGroup
+     */
     public UserGroups prepareCreate() {
         selected = new UserGroups();
         initializeEmbeddableKey();
         return selected;
     }
 
+    /**
+     * Hier wird die selectierte UserGroup erzeugt
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UserGroupsCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -85,10 +118,16 @@ public class UserGroupsController implements Serializable {
         }
     }
 
+    /**
+     * Hier wird die selectierte UserGroup geupdate
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UserGroupsUpdated"));
     }
 
+    /**
+     * Hier wird die selectierte UserGroup geloescht
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UserGroupsDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -97,6 +136,10 @@ public class UserGroupsController implements Serializable {
         }
     }
 
+    /**
+     * Diese Methode gibt alle in der DB vorhandenen UserGroups als Liste zurueck
+     * @return die List der UserGroups
+     */
     public List<UserGroups> getItems() {
         if (items == null) {
             items = getFacade().findAll();
@@ -104,14 +147,27 @@ public class UserGroupsController implements Serializable {
         return items;
     }
     
+    /**
+     * Diese Methode gibt alle Rolenmoeglichkeiten zurueck
+     * @return Liste der Moeglichkeiten
+     */
     public List<String> getRoles() {
         return Arrays.asList(roles);
     }
     
+    /**
+     * Diese Methode gibt alle Sperrmoeglichkeiten zurueck
+     * @return Liste der Moeglichkeiten
+     */
     public List<String> getBlocked() {
         return Arrays.asList(blocked);
     }
 
+    /**
+     * Diese Methode ruft die CRUD Methoden auf welche die Daten in der DB aendern
+     * @param persistAction gibt an welchen CRUD Befehl ausgefuehrt werden soll
+     * @param successMessage wenn das CRUD erfolgreich war wird ein Pop-up mit der uebergebenen Message ausgegeben
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -140,14 +196,27 @@ public class UserGroupsController implements Serializable {
         }
     }
 
+    /**
+     * Diese Methode sucht in DB nach einen bestimmten User
+     * @param id ID
+     * @return die gefundenen UserGroup
+     */
     public UserGroups getUserGroups(java.lang.String id) {
         return getFacade().find(id);
     }
 
-public List<UserGroups> getItemsAvailableSelectMany() {
+    /**
+     * Diese Methode gibt alle in der DB vorhandenen UserGroups als Liste zurueck
+     * @return die List der UserGroups
+     */
+    public List<UserGroups> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
-
+    
+    /**
+     * Diese Methode gibt alle in der DB vorhandenen UserGroups als Liste zurueck
+     * @return die List der UserGroups
+     */
     public List<UserGroups> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
