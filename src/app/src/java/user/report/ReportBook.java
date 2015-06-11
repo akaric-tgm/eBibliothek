@@ -60,10 +60,10 @@ public class ReportBook implements Serializable{
         return "index.xhmtl?faces-redirect=true";
     }
     public void resetReportcounter(String bookId){
-         this.reportByBook.replace(bookId, 0);
+         this.reportByBook.put(bookId, 0);
     }
     public void setReportByBook(String bookId,int counter){
-        this.reportByBook.replace(bookId, counter);
+        this.reportByBook.put(bookId, counter);
     }
     public void setMessage(String message){
         this.message = message;
