@@ -9,6 +9,8 @@ public class Readtastic_UAT {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(Search.class);
         suite.addTestSuite(Login.class);
+        suite.addTestSuite(Logout.class);
+        suite.addTestSuite(DeleteBook.class);
 
         return suite;
     }

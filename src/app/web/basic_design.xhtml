@@ -62,7 +62,7 @@
                                 <p:button value="Login" outcome="benutzer_einloggen" icon="ui-icon-extlink" rendered="#{!userController.logged_in}"/>
                                 <p:button outcome="benutzer_registrieren" value="Registrieren" icon="ui-icon-extlink" rendered="#{!userController.logged_in}"/>
                                 <p:outputLabel id="loggedInAs" value="Eingeloggt als #{userController.logged_in_user.username}" rendered="#{userController.logged_in}" style="padding-right: 20px;"/>
-                                <p:commandButton value="Logout" action="#{userController.logoutUser()}" icon="ui-icon-extlink" rendered="#{userController.logged_in}"/>
+                                <p:commandButton id="submit" value="Logout" action="#{userController.logoutUser()}" icon="ui-icon-extlink" rendered="#{userController.logged_in}"/>
                             </f:facet>
                         </p:menubar>
                     </h:form>

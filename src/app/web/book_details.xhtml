@@ -52,14 +52,14 @@
                             <h:form>        
                              <p:growl id="message" showDetail="true" />
  
-                            <p:commandButton value="Buch löschen" actionListener="#{buchLoeschenBean.erfolgreich}" update="message">
+                            <p:commandButton id="deletebook" value="Buch löschen" actionListener="#{buchLoeschenBean.erfolgreich}" update="message">
                                 <f:param id="bookid" name="bookid" value="#{bookController.getContextParameter()}" />
                                 <p:confirm header="Buch löschen" message="Sind Sie sicher?" icon="ui-icon-alert" />
                             </p:commandButton>
  
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                            <p:commandButton value="Ja" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                            <p:commandButton value="Nein" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            <p:commandButton id="yes" value="Ja" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton id="no" value="Nein" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                             </h:form>
                         </div>
