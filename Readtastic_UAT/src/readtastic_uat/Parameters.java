@@ -14,6 +14,7 @@ public class Parameters{
     public static final int CHROME = 2;
 
     public static final String LINUX = "linux";
+    public static final String MAC = "mac";
     public static final String WINDOWS = "windows.exe";
 
     public static String os = LINUX; //HIER OS AENDERN
