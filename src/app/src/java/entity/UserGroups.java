@@ -8,11 +8,9 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -22,8 +20,9 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author user
+ * Diese Entity stellt ein UserGroup von der ebibliothek dar.
+ * @author Philipp Adler
+ * @version 2015-06-11
  */
 @Entity
 @Table(name = "User_Groups")

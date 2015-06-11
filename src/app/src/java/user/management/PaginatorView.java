@@ -25,7 +25,6 @@ public class PaginatorView implements Serializable {
 
     @PostConstruct
     public void init() {
-        System.out.println("A");
         users = service.getItems();
     }
 
