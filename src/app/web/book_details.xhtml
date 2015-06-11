@@ -11,28 +11,32 @@
     <ui:composition template="basic_design.xhtml">
         <ui:define name="content">
             <div class="ui-grid-row">
-                <div class="ui-grid-col-3">
+                <div class="ui-grid-col-2">
                     <img class="img-responsive" src="http://www.logos.com/media/pbb/SampleCover.jpg"
                                                 alt="cover-image" style="width: 200px; height: 300px;"/>
                 </div>
-                <!--<f:param name="id" value= /> -->
-                <div class="ui-grid-col-9">
+                <div class="ui-grid-col-10" style="padding-left: 20px;">
                     <div class="ui-grid-row">
                         <div class="ui-grid-col-12">
-                          <p:outputLabel value=" #{bookController.getBookByBookId(bookController.getContextParameter()).title}" style="font-family: 'Times New Roman'; font-size: 40px;"/>
-                          <p:outputLabel value="von #{bookController.getBookByBookId(bookController.getContextParameter()).author}" style="font-family: 'Times New Roman'; font-size: 32px;"/>
-                          <br />
+                          <p:outputLabel value=" #{bookController.getBookByBookId(bookController.getContextParameter()).title}" style="font-family: 'Times New Roman'; font-size: 32px; font-weight: bold;"/>
+                          <p:outputLabel value="von #{bookController.getBookByBookId(bookController.getContextParameter()).author}" style="font-family: 'Times New Roman'; font-size: 28px; padding-left: 10px;"/>
+                          <br /><br />
                         </div>
                     </div>
                     <div class="ui-grid-row" style="padding-top: 10px;">
                         <div class="ui-grid-col-8">
-                            <div style="font-size: 18px;">
+                            <div style="font-size: 20px;">
                                 <p:rating value="" readonly="true" />
-                            </div><br />
+                            </div><br /><br />
+                            <p:outputLabel value="hochgeladen von #{bookController.getBookByBookId(bookController.getContextParameter()).username.username}" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
+                            <div style="padding-top: 10px;" />
+                            <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).pages} Seiten auf #{bookController.getBookByBookId(bookController.getContextParameter()).language}" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
+                            <div style="padding-top: 5px;" />
+                            <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).downloads} mal heruntergeladen" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
+                            <div style="padding-top: 5px;" />
+                            <p:outputLabel value="#{reportBook.getReportByBook(bookController.getContextParameter())} mal gemeldet" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
+                            <div style="padding-top: 5px;" />
                             <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).views} mal gelesen" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
-                            <p:outputLabel value="hochgeladen von #{bookController.getBookByBookId(bookController.getContextParameter()).username}" style="font-family: 'Times New Roman'; font-size: 32px;"/><br />
-                            <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).downloads} mal gedownloadet" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
-                            <p:outputLabel value="Dieses Buch wurde #{reportBook.getReportByBook(bookController.getContextParameter())} mal gemeldet" style="font-family: 'Times New Roman'; font-size: 20px;"/><br />
                         </div>
                         <div class="ui-grid-4">
                             <p:button value="Buch lesen"/><br />
@@ -52,7 +56,7 @@
                             <h:form>        
                              <p:growl id="message" showDetail="true" />
  
-                            <p:commandButton value="Buch löschen" actionListener="#{buchLoeschenBean.erfolgreich}" update="message">
+                             <p:commandButton value="Buch löschen" actionListener="#{buchLoeschenBean.erfolgreich}" update="message" rendered="#{bookController.getBookByBookId(bookController.getContextParameter()).username.username==userController.logged_in_user.username}">
                                 <f:param id="bookid" name="bookid" value="#{bookController.getContextParameter()}" />
                                 <p:confirm header="Buch löschen" message="Sind Sie sicher?" icon="ui-icon-alert" />
                             </p:commandButton>
@@ -69,15 +73,15 @@
             
             <div class="ui-grid-row" style="padding-top: 30px;">
                 <div class="ui-grid-col-8">
-                     <p:outputLabel value="von #{bookController.getBookByBookId(bookController.getContextParameter()).summary}" style="font-family: 'Times New Roman'; font-size: 20px;"/>
+                     <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).summary}" style="font-family: 'Times New Roman'; font-size: 20px;"/>
                 </div>
             </div>
             <div class="ui-grid-row" style="padding-top: 30px;">
                 <div class="ui-grid-col-8">
                     <p:separator />
                     <p:rating value="3" readonly="true" />
-                    <b style="font-size: 18px; padding-left: 20px;">Lorem ipsum dolor sit amet</b><br />
-                    <div style="font-size: 18px;">
+                    <b style="font-size: 20px; padding-left: 20px;">Lorem ipsum dolor sit amet</b><br />
+                    <div style="font-size: 20px;">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer massa
                     justo, volutpat a sagittis non, mattis sed sem. Nam et rhoncus lorem. Quisque pellentesque gravida
                     felis et rutrum. Aenean ut porta risus, ac porta nisi. Donec odio ante, sagittis ac leo quis,

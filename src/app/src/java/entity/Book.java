@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Book.findByFilepath", query = "SELECT b FROM Book b WHERE b.filepath = :filepath"),
     @NamedQuery(name = "Book.findByDownloads", query = "SELECT b FROM Book b WHERE b.downloads = :downloads"),
     @NamedQuery(name = "Book.findByViews", query = "SELECT b FROM Book b WHERE b.views = :views"),
+    @NamedQuery(name = "Book.findByPages", query = "SELECT b FROM Book b WHERE b.pages = :pages"),
     @NamedQuery(name = "Book.findLikeTitleOrAuthor", query = "SELECT b FROM Book b WHERE b.title LIKE :title OR b.author LIKE :author")})
 public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -69,6 +70,8 @@ public class Book implements Serializable {
     private Integer downloads;
     @Column(name = "views")
     private Integer views;
+    @Column(name = "pages")
+    private Integer pages;
     @JoinColumn(name = "username", referencedColumnName = "username")
     @ManyToOne
     private User username;
@@ -153,6 +156,14 @@ public class Book implements Serializable {
 
     public void setViews(Integer views) {
         this.views = views;
+    }
+
+    public Integer getPages() {
+        return pages;
+    }
+
+    public void setPages(Integer pages) {
+        this.pages = pages;
     }
 
     public User getUsername() {
