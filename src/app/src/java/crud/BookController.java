@@ -123,7 +123,6 @@ public class BookController implements Serializable{
     
     public Book getBookByBookId(int bookId){
         Book book=getFacade().find(bookId);
-        System.out.print("Hallo");
         return book;
     }
     

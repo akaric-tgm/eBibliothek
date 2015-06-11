@@ -10,6 +10,7 @@
 <h:body>
     <ui:composition template="basic_design.xhtml">
         <ui:define name="content">
+            <h:form>
             <div class="ui-grid-row">
                 <div class="ui-grid-col-2">
                     <img class="img-responsive" src="http://www.logos.com/media/pbb/SampleCover.jpg"
@@ -53,19 +54,17 @@
                                 <f:param name="book" value="#{bookController.getContextParameter()}" />
                             </p:button>
                             <div style="margin-top: 10px;"></div>
-                            <h:form>        
                              <p:growl id="message" showDetail="true" />
  
-                             <p:commandButton value="Buch löschen" actionListener="#{buchLoeschenBean.erfolgreich}" update="message" rendered="#{bookController.getBookByBookId(bookController.getContextParameter()).username.username==userController.logged_in_user.username}">
+                             <p:commandButton id="deletebook" value="Buch löschen" actionListener="#{buchLoeschenBean.erfolgreich}" update="message" rendered="#{bookController.getBookByBookId(bookController.getContextParameter()).username.username==userController.logged_in_user.username}">
                                 <f:param id="bookid" name="bookid" value="#{bookController.getContextParameter()}" />
                                 <p:confirm header="Buch löschen" message="Sind Sie sicher?" icon="ui-icon-alert" />
                             </p:commandButton>
  
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                            <p:commandButton value="Ja" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                            <p:commandButton value="Nein" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            <p:commandButton id="yes" value="Ja" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton id="no" value="Nein" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
-                            </h:form>
                         </div>
                     </div>
                 </div>
@@ -88,7 +87,8 @@
                     tincidunt consectetur enim.
                     </div>
                 </div>
-            </div>
+            </div>    
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

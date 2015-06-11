@@ -6,6 +6,7 @@
 package user.rate;
 
 import crud.ContributionController;
+import crud.UserController;
 import entity.Contribution;
 import entity.ContributionPK;
 import java.io.Serializable;
@@ -31,7 +32,9 @@ public class RateBook implements Serializable{
     private int bookId;
     private String username;
     @Inject
-    private ContributionController conc;
+    private ContributionController conc;   
+    @Inject
+    private UserController usec;
     
     public void setRating(int rating){
         this.rating = rating;
@@ -45,16 +48,17 @@ public class RateBook implements Serializable{
     public String getMessage(){
         return message;
     }
-    public void save(){
-       Contribution c = new Contribution(username,bookId);
-       ContributionPK cpk = new ContributionPK(username,bookId);
+    public String save(){
+       Contribution c = new Contribution(usec.getLogged_in_user().getUsername(),bookId);
+       ContributionPK cpk = new ContributionPK(usec.getLogged_in_user().getUsername(),bookId);
        c.setRating(new Short(new Integer(rating).shortValue()));
        c.setComment(message);
        c.setContributionPK(cpk);
-       
        conc.setSelected(c);
+       
        // Embeddedkeys fehlen!
-       //conc.create();
+       conc.create();
+       return "book_details?faces-redirect=true&book="+bookId;
     }
 
     public int getBookId() {

@@ -88,12 +88,14 @@ public class ContributionController implements Serializable {
     }
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
+            //setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
-                } else {
+                if (persistAction == PersistAction.DELETE) {
                     getFacade().remove(selected);
+                } else if(persistAction == PersistAction.UPDATE) {
+                    getFacade().edit(selected);
+                } else if(persistAction == PersistAction.CREATE) {
+                    getFacade().create(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
