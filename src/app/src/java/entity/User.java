@@ -329,7 +329,7 @@ public class User implements Serializable {
 
     /**
      * Die Methode aendert die Aenderungen von Buechern die mit dem User in Verbindung stehen
-     * @param reportCollection neue Liste der Aenderungen von Buechern die in Verbindung mit dem User stehen
+     * @param changeRequestCollection neue Liste der Aenderungen von Buechern die in Verbindung mit dem User stehen
      */
     public void setChangeRequestCollection(Collection<ChangeRequest> changeRequestCollection) {
         this.changeRequestCollection = changeRequestCollection;

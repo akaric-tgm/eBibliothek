@@ -102,7 +102,7 @@ public class UserController implements Serializable {
     }
     
     /**
-     * Diese Methode loggt den User ein und kontrolliert ob der Username & das Passwort korrekt eingegeben wurden
+     * Diese Methode loggt den User ein und kontrolliert ob der Username und das Passwort korrekt eingegeben wurden
      * @param username der Username 
      * @param password das Passwort
      * @return die URL wo der User weitergeleitet wird
