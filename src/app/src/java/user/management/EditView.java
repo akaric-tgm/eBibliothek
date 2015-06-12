@@ -32,10 +32,8 @@ public class EditView implements Serializable {
     private List<UserGroups> users1;
     private List<UserGroups> users2;
 
-    @Inject
-    private UserGroupsController service;
-    @Inject
-    private UserController usercontroller;
+    @Inject private UserGroupsController service;
+    @Inject private UserController usercontroller;
 
     /**
      * Diese Methode holt sich die UserGroups aus der DB
