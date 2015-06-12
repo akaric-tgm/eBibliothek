@@ -17,7 +17,9 @@ import org.primefaces.event.RowEditEvent;
 import entity.UserGroups;
 import crud.UserGroupsController;
 import entity.User;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Diese Klasse erlaubt dem Admin vorhandene User zu bearbeiten
@@ -25,8 +27,8 @@ import javax.inject.Inject;
  * @version 2015-06-11
  */
 
-@ManagedBean(name = "dtEditView")
-@ViewScoped
+@Named("dtEditView")
+@RequestScoped
 public class EditView implements Serializable {
 
     private List<UserGroups> users1;
@@ -89,8 +91,8 @@ public class EditView implements Serializable {
      * @param event beinhaltet die Usergroupdaten
      */
     public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Userdaten geändert", ((UserGroups) event.getObject()).getUser().getUsername());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        //FacesMessage msg = new FacesMessage("Userdaten geändert", ((UserGroups) event.getObject()).getUser().getUsername());
+        //FacesContext.getCurrentInstance().addMessage(null, msg);
         
         User user = usercontroller.findByUsername(((UserGroups) event.getObject()).getUser().getUsername());
         user.setUser(((UserGroups) event.getObject()).getUser());

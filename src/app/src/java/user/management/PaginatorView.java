@@ -8,11 +8,11 @@ package user.management;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import crud.UserGroupsController;
 import entity.UserGroups;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Diese Klasse stellt einen Paginator dar, er holt sich die Daten aus der DB und leitet sie an die View weiter
@@ -20,13 +20,13 @@ import entity.UserGroups;
  * @version 2015-06-11
  */
 
-@ManagedBean(name = "dtPaginatorView")
-@ViewScoped
+@Named("dtPaginatorView")
+@RequestScoped
 public class PaginatorView implements Serializable {
 
     private List<UserGroups> users;
 
-    @ManagedProperty("#{userGroupsController}")
+    @Inject
     private UserGroupsController service;
 
     /**

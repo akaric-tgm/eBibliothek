@@ -36,7 +36,7 @@ public class BenutzerLoeschenBean {
         uc.setSelected(usergroup.getUser());
         System.out.print(uc.getSelected().getUsername());
         uc.destroy();
-        addMessage("Erfolg", uc.getSelected().getUsername()+" wurde gelöscht!");
+        addMessage("Erfolg", " wurde gelöscht!");
     }
     
     /**

@@ -15,10 +15,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
 
 /**
@@ -28,11 +30,11 @@ import org.primefaces.event.FileUploadEvent;
  * @version 2015-06-11
  */
 
-@ManagedBean(name = "userupload")
+@Named("userupload")
+@RequestScoped
 public class UserUpload {
 
-    @Inject
-    private UserGroupsController usergroupscontroller;
+    @Inject private UserGroupsController usergroupscontroller;
 
     /**
      * In dieser Methode kann man Files hochladen

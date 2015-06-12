@@ -12,7 +12,7 @@
             <ui:define name="content">
                 <h:form id="form">
                     <h2>Benutzerverwaltung</h2>
-                    <p:growl id="msgs" showDetail="true"/>
+                    <p:growl id="msgs" showDetail="true" life="1000"/>
                     <p:dataTable var="user" value="#{dtPaginatorView.users}" rows="10" editable="true"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
