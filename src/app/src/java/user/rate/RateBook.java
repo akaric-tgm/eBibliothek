@@ -18,15 +18,15 @@ import javax.validation.constraints.Min;
 
 
 /**
- *
+ * Kuemmert sich um Bewertung und Kommentar eines User fuer ein Buch
  * @author Melanie Goebel
  */
 
 @Named("rateBook")
 @SessionScoped
 public class RateBook implements Serializable{
-    @Min(1) 
-    @Max(5)
+    @Min(1) // Bewertung muss ausgefuellt werden (mind. 1 Stern)
+    @Max(5) // Nur 5 Sterne moeglich
     private int rating;
     private String message;
     private int bookId;
@@ -48,17 +48,19 @@ public class RateBook implements Serializable{
     public String getMessage(){
         return message;
     }
+    /**
+     * Speichert Kommentar und Bewertung in der Datenbank
+     * @return die zu weiterleitendne URL
+     */
     public String save(){
        Contribution c = new Contribution(usec.getLogged_in_user().getUsername(),bookId);
-       ContributionPK cpk = new ContributionPK(usec.getLogged_in_user().getUsername(),bookId);
+       ContributionPK cpk = new ContributionPK(usec.getLogged_in_user().getUsername(),bookId);//eingeloggten User und BuchID
        c.setRating(new Short(new Integer(rating).shortValue()));
        c.setComment(message);
        c.setContributionPK(cpk);
        conc.setSelected(c);
-       
-       // Embeddedkeys fehlen!
        conc.create();
-       return "book_details?faces-redirect=true&book="+bookId;
+       return "book_details?faces-redirect=true&book="+bookId;//weiterleiten auf die Book-Detailseite mit der id bookId
     }
 
     public int getBookId() {

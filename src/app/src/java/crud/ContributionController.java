@@ -83,9 +83,7 @@ public class ContributionController implements Serializable {
         }
         return items;
     }
-    public List<Contribution> getContributionByBookId(int bookId){
-        return ejbFacade.getEntityManager().createNamedQuery("findByBookid").setParameter("bookid", bookId).getResultList();
-    }
+
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             //setEmbeddableKeys();

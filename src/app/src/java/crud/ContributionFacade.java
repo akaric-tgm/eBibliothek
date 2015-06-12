@@ -6,6 +6,7 @@
 package crud;
 
 import entity.Contribution;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,14 @@ public class ContributionFacade extends AbstractFacade<Contribution> {
 
     public ContributionFacade() {
         super(Contribution.class);
+    }
+    /**
+     * Gibt eine Liste mit Bewertungen (+Kommentar) zurueck die fuer das Buch verfuegbar sind.
+     * @param bookId
+     * @return Liste der Bewertungen
+     */
+    public List<Contribution> getContributionByBookId(int bookId){
+       return this.getEntityManager().createNamedQuery("findByBookid").setParameter("bookid", bookId).getResultList();  
     }
     
 }
