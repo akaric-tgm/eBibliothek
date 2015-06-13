@@ -11,7 +11,8 @@
     <h:body>
         <ui:composition template="basic_design.xhtml">
             <ui:define name="content">
-                    <h:form id="form" rendered="${userController.logged_in_user.userGroups.groupname=='Admin'}">
+                <c:if test="#{userController.logged_in_user.userGroups.groupname=='Admin'}">
+                    <h:form id="form">
                         <h2>Benutzerverwaltung</h2>
                         <p:growl id="msgs" showDetail="true" life="1000"/>
                         <p:dataTable var="user" value="#{dtPaginatorView.users}" rows="10" editable="true"
@@ -86,7 +87,8 @@
                         <p:growl id="messages" showDetail="true" />
                     </h:form>
                     <div class="ui-grid-row" style="padding-top: 5%;"></div>
-                <c:if test="#{userController.logged_in_user.userGroups.groupname not eq 'Admin'}">
+                </c:if>
+                <c:if test="#{userController.logged_in_user.userGroups.groupname!='Admin' || userController.logged_in_user.userGroups.groupname==null}">
                     <ui:include src="errorpage.xhtml" />
                 </c:if>
             </ui:define>
