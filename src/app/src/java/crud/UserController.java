@@ -110,8 +110,11 @@ public class UserController implements Serializable {
     public String loginUser(String username, String password){
         String hashedPassword = getHashedString(SALT+password);
         if(isValidCredentials(username, hashedPassword)){
-            logged_in = true;
             logged_in_user = findByUsername(username);
+            if(logged_in_user.getBlocked()){
+                return "loginError?faces-redirect=true";
+            }
+            logged_in = true;
             return "index?faces-redirect=true";
         }else{
             return "loginError?faces-redirect=true";

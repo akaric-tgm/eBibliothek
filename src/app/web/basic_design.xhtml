@@ -6,7 +6,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:head>
     <title>Readtastic</title>
@@ -55,7 +56,9 @@
                             <p:menuitem value="Home" outcome="index"/>
                             <p:submenu label="Testy">
                                 <p:menuitem value="Passwort zurücksetzen" outcome="reset_password" />
+                                <c:if test="#{userController.logged_in_user.userGroups.groupname=='Admin'}">
                                 <p:menuitem value="Benutzerverwaltung" outcome="benutzer_verwaltung" />
+                                </c:if>
                             </p:submenu>
                             <p:menuitem value="Impressum" outcome="impressum" />
                             <f:facet name="options">
