@@ -406,24 +406,6 @@ public class User implements Serializable {
     }
 
     /**
-     * Die Methode uebernimmt die Daten von einer Liste
-     * @param daten Liste wo alle notwendigen Daten fuer den User stehen
-     */
-    public void setUser(String[] daten) {
-        this.setUsername(daten[0]);
-        this.setPassword(daten[1]);
-        this.setFirstName(daten[2]);
-        this.setLastName(daten[3]);
-        this.setEmail(daten[4]);
-        this.setFid(Integer.parseInt(daten[5]));
-        this.setGid(Integer.parseInt(daten[6]));
-        this.setPwtoken(daten[7]);
-        this.setEmailtoken(daten[8]);
-        /* Group */
-        this.setBlocked(Boolean.parseBoolean(daten[9]));
-    }
-
-    /**
      * Diese Methode nimmt einen vorhandenen User entgegen und uebernimmt deren Parameter
      * @param user der User von dem die Daten uebernommen werden
      */
