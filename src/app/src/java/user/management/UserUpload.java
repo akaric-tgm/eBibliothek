@@ -79,7 +79,6 @@ public class UserUpload {
                 } else {
                     String[] daten = line.split(";");
                     if (mapping.isEmpty()) {
-                        System.out.println(daten[0] + " A");
                         for (int i = 0; i < keys.length; i++) {
                             mapping.put(keys[i], daten[i]);
                         }
@@ -184,9 +183,9 @@ public class UserUpload {
                         try {
                             mapping.get("groupname").isEmpty();
                             if((mapping.get("groupname").equals("User") || mapping.get("groupname").equals("Moderator") || mapping.get("groupname").equals("Admin"))){
-                                group.setGroupname(mapping.get("User"));
-                            }else{
                                 group.setGroupname(mapping.get("groupname"));
+                            }else{
+                                group.setGroupname("User");
                             }
                             group.setUser(user);
                             groups.add(group);

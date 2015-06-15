@@ -33,14 +33,22 @@
                             <p:column headerText="#{bundle.ListUserTitle_firstName}" sortBy="#{user.user.firstName}" filterBy="#{user.user.firstName}">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{user.user.firstName}" /></f:facet>
-                                    <f:facet name="input"><p:inputText value="#{user.user.firstName}" style="width:100%"/></f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{user.user.firstName}" style="width:100%" validatorMessage="Es muss ein Vorname vorhanden sein">
+                                            <f:validateRegex pattern="^(?!\s*$).+" />
+                                        </p:inputText>
+                                    </f:facet>
                                 </p:cellEditor>
                             </p:column>
 
                             <p:column headerText="#{bundle.ListUserTitle_lastName}" sortBy="#{user.user.lastName}" filterBy="#{user.user.lastName}">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{user.user.lastName}" /></f:facet>
-                                    <f:facet name="input"><p:inputText value="#{user.user.lastName}" style="width:100%"/></f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{user.user.lastName}" style="width:100%" validatorMessage="Es muss ein Nachname vorhanden sein">
+                                            <f:validateRegex pattern="^(?!\s*$).+" />
+                                        </p:inputText>
+                                    </f:facet>
                                 </p:cellEditor>
                             </p:column>
 
@@ -48,7 +56,7 @@
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{user.user.email}" /></f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{user.user.email}" style="width:100%" validatorMessage="Invalid email format">
+                                        <p:inputText value="#{user.user.email}" style="width:100%" validatorMessage="Falsche Email">
                                             <f:validateRegex
                                                 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                                         </p:inputText>
