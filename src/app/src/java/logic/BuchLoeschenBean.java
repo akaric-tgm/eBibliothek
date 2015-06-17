@@ -10,7 +10,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
  
 import org.primefaces.event.CloseEvent;
-
+/**
+ * 
+ * @author Adin Karic
+ */
 @Named("buchLoeschenBean")
 @RequestScoped
 public class BuchLoeschenBean {

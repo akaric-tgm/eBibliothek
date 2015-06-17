@@ -67,6 +67,7 @@
                                 <p:outputLabel id="loggedInAs" value="Eingeloggt als #{userController.logged_in_user.username}" rendered="#{userController.logged_in}" style="padding-right: 20px;"/>
                                 <p:commandButton id="submit" value="Logout" action="#{userController.logoutUser()}" icon="ui-icon-extlink" rendered="#{userController.logged_in}"/>
                             </f:facet>
+                            <p:menuitem value="Account löschen" outcome="accDel" />
                         </p:menubar>
                     </h:form>
                 </div>
