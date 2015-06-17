@@ -49,14 +49,14 @@ public class RateBook implements Serializable{
         return message;
     }
     /**
-     * Speichert Kommentar und Bewertung in der Datenbank
-     * @return die zu weiterleitendne URL
+     * Speichert das Kommentar und die Bewertung in die Datenbank
+     * @return die zu weiterleitende URL
      */
     public String save(){
        Contribution c = new Contribution(usec.getLogged_in_user().getUsername(),bookId);
        ContributionPK cpk = new ContributionPK(usec.getLogged_in_user().getUsername(),bookId);//eingeloggten User und BuchID
-       c.setRating(new Short(new Integer(rating).shortValue()));
-       c.setComment(message);
+       c.setRating(new Short(new Integer(rating).shortValue()));//Bewertung
+       c.setComment(message);//Kommentar
        c.setContributionPK(cpk);
        conc.setSelected(c);
        conc.create();
