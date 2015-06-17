@@ -34,7 +34,8 @@ public class ContributionFacade extends AbstractFacade<Contribution> {
      * @return Liste der Bewertungen
      */
     public List<Contribution> getContributionByBookId(int bookId){
-       return this.getEntityManager().createNamedQuery("findByBookid").setParameter("bookid", bookId).getResultList();  
+       List<Contribution> liste =  this.getEntityManager().createNamedQuery("Contribution.findByBookid").setParameter("bookid", bookId).getResultList();
+       return liste;
     }
     
 }

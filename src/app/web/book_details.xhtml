@@ -75,20 +75,21 @@
                      <p:outputLabel value="#{bookController.getBookByBookId(bookController.getContextParameter()).summary}" style="font-family: 'Times New Roman'; font-size: 20px;"/>
                 </div>
             </div>
-            <h1> Bewertungen #{contributionFacade.getContributionByBookId(1)}</h1><br /> 
+            <h1> Bewertungen</h1>
             
-            <ui:repeat var="rate" value="#{contributionFacade.getContributionByBookId(bookController.getContextParameter())}">
+            <ui:repeat var="rate" value="#{contributionController.getContributionByBookId(bookController.getContextParameter())}">
             <div class="ui-grid-row" style="padding-top: 30px;">
                 <div class="ui-grid-col-8">
                     <p:separator />
                     <p:rating value="#{rate.rating}" readonly="true" />
-                    <b style="font-size: 18px; padding-left: 20px;">#{rate.user}</b><br />
+                    <b style="font-size: 18px; padding-left: 20px;">#{rate.user.username}</b><br />
                     <div style="font-size: 18px;">
                        #{rate.comment}
                     </div>
                 </div>
             </div>
-            </ui:repeat>                
+            </ui:repeat>
+            <br /> <br />
             </h:form>
         </ui:define>
     </ui:composition>

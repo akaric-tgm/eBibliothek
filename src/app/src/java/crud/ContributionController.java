@@ -64,6 +64,9 @@ public class ContributionController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    public List<Contribution> getContributionByBookId(int bookid){
+        return getFacade().getContributionByBookId(bookid);
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ContributionUpdated"));
